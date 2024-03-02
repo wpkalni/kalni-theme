@@ -18,9 +18,9 @@
 					<h2 class="fz-32 fw-600 clr-white">Subscribe our Newsletter</h2>
 				</div>
 				<div class="newsletter-form">
-					<form action="/" class="newsletter flex align-center">
+					<form action="/" class="newsletter flex align-center relative bg-white br-4">
 						<input type="email" name="email" id="email" class="fz-16 fw-400 clr-black" placeholder="Enter your email address">
-						<input type="submit" class="fz-14 fw-500 clr-white bg-blue" value="Subscriber">
+						<input type="submit" class="fz-14 fw-500 clr-white bg-blue absolute" value="Subscriber">
 					</form>
 				</div>
 				<div class="newsletter-img">

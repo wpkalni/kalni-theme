@@ -98,8 +98,8 @@ function kalni_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
-			'width'       => 250,
+			'height'      => 58,
+			'width'       => 113,
 			'flex-width'  => true,
 			'flex-height' => true,
 		)
@@ -181,7 +181,7 @@ function kalni_scripts() {
 	wp_enqueue_style( 'kalni-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'kalni-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'kalni-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
+	// wp_enqueue_script( 'kalni-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'kalni-script', get_template_directory_uri() . '/assets/js/kalni-script.js', array('jquery'), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -209,6 +209,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Customizer settings.
+ */
+require get_template_directory() . '/inc/kalni-settings.php';
 
 /**
  * Load Jetpack compatibility file.

@@ -175,6 +175,7 @@ add_action( 'widgets_init', 'kalni_widgets_init' );
  */
 function kalni_scripts() {
 	
+	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick-theme.css', array(), '1.0.0', 'all' );
 	wp_enqueue_style( 'fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), 'all' );
 	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap', array(), 'all' );
 	wp_enqueue_style( 'default-style', get_template_directory_uri() . '/assets/css/default.css', array(), _S_VERSION, 'all' );
@@ -182,6 +183,7 @@ function kalni_scripts() {
 	wp_style_add_data( 'kalni-style', 'rtl', 'replace' );
 
 	// wp_enqueue_script( 'kalni-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'kalni-script', get_template_directory_uri() . '/assets/js/kalni-script.js', array('jquery'), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -214,6 +216,17 @@ require get_template_directory() . '/inc/customizer.php';
  * Customizer settings.
  */
 require get_template_directory() . '/inc/kalni-settings.php';
+
+/**
+ * Theme shortcodes.
+ */
+require get_template_directory() . '/inc/theme-shortcodes/theme-shortcodes.php';
+
+/**
+ * Codestar framework
+ */
+require_once dirname( __FILE__ ) .'/inc//codestar-framework/codestar-framework.php';
+require_once dirname( __FILE__ ) .'/inc/metabox-and-options.php';
 
 /**
  * Load Jetpack compatibility file.

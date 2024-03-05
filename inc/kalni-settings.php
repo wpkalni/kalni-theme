@@ -30,37 +30,31 @@ function kalni_get_theme_settings(){
     $setting['header_top_content4'] = strlen($header_top_content4) > 0 ? $header_top_content4 : false;
     
     // email
-    $hide_header_email = get_theme_mod( 'hide_header_email' );
-    $setting['hide_header_email'] = strlen($hide_header_email) > 0 ? $hide_header_email : false;
+    $hide_header_search = get_theme_mod( 'hide_header_search' );
+    $setting['hide_header_search'] = strlen($hide_header_search) > 0 ? $hide_header_search : false;
     
-    $header_email = get_theme_mod( 'header_email' );
-    $setting['header_email'] = strlen($header_email) > 0 ? $header_email : false;
+    $hide_header_account = get_theme_mod( 'hide_header_account' );
+    $setting['hide_header_account'] = strlen($hide_header_account) > 0 ? $hide_header_account : false;
     
     // phone
-    $hide_header_phone = get_theme_mod( 'hide_header_phone' );
-    $setting['hide_header_phone'] = strlen($hide_header_phone) > 0 ? $hide_header_phone : false;
+    $hide_header_wish = get_theme_mod( 'hide_header_wish' );
+    $setting['hide_header_wish'] = strlen($hide_header_wish) > 0 ? $hide_header_wish : false;
+
+    $hide_header_product_list = get_theme_mod( 'hide_header_product_list' );
+    $setting['hide_header_product_list'] = strlen($hide_header_product_list) > 0 ? $hide_header_product_list : false;
     
-    $header_phone_text = get_theme_mod( 'header_phone_text' );
-    $setting['header_phone_text'] = strlen($header_phone_text) > 0 ? $header_phone_text : false;
+    $hide_header_cart = get_theme_mod( 'hide_header_cart' );
+    $setting['hide_header_cart'] = strlen($hide_header_cart) > 0 ? $hide_header_cart : false;
+
     
-    $header_phone_number = get_theme_mod( 'header_phone_number' );
-    $setting['header_phone_number'] = strlen($header_phone_number) > 0 ? $header_phone_number : false;
+    $hide_header_cats = get_theme_mod( 'hide_header_cats' );
+    $setting['hide_header_cats'] = strlen($hide_header_cats) > 0 ? $hide_header_cats : false;
     
-    // header langugage
-    $hide_header_lang = get_theme_mod( 'hide_header_lang' );
-    $setting['hide_header_lang'] = strlen($hide_header_lang) > 0 ? $hide_header_lang : false;
-    
-    // Header login
-    $hide_header_login = get_theme_mod( 'hide_header_login' );
-    $setting['hide_header_login'] = strlen($hide_header_login) > 0 ? $hide_header_login : false;
-    // Header login text
-    $header_login = get_theme_mod( 'header_login' );
-    $setting['header_login'] = strlen($header_login) > 0 ? $header_login : false;
-    // Header login link
-    $header_login_link = get_theme_mod( 'header_login_link' );
-    $setting['header_login_link'] = strlen($header_login_link) > 0 ? $header_login_link : false;
- 
-    
+    // header 
+    $hide_header_discount = get_theme_mod( 'hide_header_discount' );
+    $setting['hide_header_discount'] = strlen($hide_header_discount) > 0 ? $hide_header_discount : false;
+
+
 
     // Footer
     $footer_logo = get_theme_mod( 'footer_logo' );

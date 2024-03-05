@@ -218,10 +218,10 @@ function kalni_header_section_customize_register($wp_customize)
 
 
 
-	// Email
+	// Search
 	//add setting
 	$wp_customize->add_setting(
-		'hide_header_email',
+		'hide_header_search',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -232,18 +232,19 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'hide_header_email',
+		'hide_header_search',
 		array(
-			'label' => 'Hide email',
+			'label' => 'Hide search form',
 			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'hide_header_email'
+			'settings' => 'hide_header_search'
 		)
 	);
 
+	// Login/account
 	//add setting
 	$wp_customize->add_setting(
-		'header_email',
+		'hide_header_account',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -254,40 +255,19 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'header_email',
+		'hide_header_account',
 		array(
-			'label' => 'Add email address',
-			'type' => 'text',
-			'section' => 'header_section',
-			'settings' => 'header_email'
-		)
-	);
-
-	// Phone
-	//add setting
-	$wp_customize->add_setting(
-		'hide_header_phone',
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
-		)
-	);
-
-	//add control
-	$wp_customize->add_control(
-		'hide_header_phone',
-		array(
-			'label' => 'Hide header top phone',
+			'label' => 'Hide accounts',
 			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'hide_header_phone'
+			'settings' => 'hide_header_account'
 		)
 	);
 
+	// Login/account
 	//add setting
 	$wp_customize->add_setting(
-		'header_phone_text',
+		'hide_header_product_list',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -298,61 +278,18 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'header_phone_text',
+		'hide_header_product_list',
 		array(
-			'label' => 'Add phone text',
-			'type' => 'text',
-			'section' => 'header_section',
-			'settings' => 'header_phone_text'
-		)
-	);
-
-	//add setting
-	$wp_customize->add_setting(
-		'header_phone_number',
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
-		)
-	);
-
-
-	//add control
-	$wp_customize->add_control(
-		'header_phone_number',
-		array(
-			'label' => 'Add phone number',
-			'type' => 'text',
-			'section' => 'header_section',
-			'settings' => 'header_phone_number'
-		)
-	);
-
-	// Language 
-	//add control
-	$wp_customize->add_setting(
-		'hide_header_lang',
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
-		)
-	);
-	$wp_customize->add_control(
-		'hide_header_lang',
-		array(
-			'label' => 'Hide header language',
+			'label' => 'Hide product list',
 			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'hide_header_lang'
+			'settings' => 'hide_header_product_list'
 		)
 	);
 
-
-	// Login 
+	//add setting
 	$wp_customize->add_setting(
-		'hide_header_login',
+		'hide_header_wish',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -360,20 +297,22 @@ function kalni_header_section_customize_register($wp_customize)
 		)
 	);
 
+
 	//add control
 	$wp_customize->add_control(
-		'hide_header_login',
+		'hide_header_wish',
 		array(
-			'label' => 'Hide header top login',
+			'label' => 'Hide wishlist',
 			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'hide_header_login'
+			'settings' => 'hide_header_wish'
 		)
 	);
 
+	// Login/account
 	//add setting
 	$wp_customize->add_setting(
-		'header_login',
+		'hide_header_cart',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -384,18 +323,19 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'header_login',
+		'hide_header_cart',
 		array(
-			'label' => 'Add login text',
-			'type' => 'text',
+			'label' => 'Hide cart',
+			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'header_login'
+			'settings' => 'hide_header_cart'
 		)
 	);
 
+
 	//add setting
 	$wp_customize->add_setting(
-		'header_login_link',
+		'hide_header_cats',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -405,12 +345,33 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'header_login_link',
+		'hide_header_cats',
 		array(
-			'label' => 'Add login link',
-			'type' => 'text',
+			'label' => 'Hide header bottom categories',
+			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'header_login_link'
+			'settings' => 'hide_header_cats'
+		)
+	);
+
+	//add setting
+	$wp_customize->add_setting(
+		'hide_header_discount',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh'
+		)
+	);
+
+	//add control
+	$wp_customize->add_control(
+		'hide_header_discount',
+		array(
+			'label' => 'Hide header bottom discount',
+			'type' => 'checkbox',
+			'section' => 'header_section',
+			'settings' => 'hide_header_discount'
 		)
 	);
 

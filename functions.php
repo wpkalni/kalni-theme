@@ -175,7 +175,8 @@ add_action( 'widgets_init', 'kalni_widgets_init' );
  */
 function kalni_scripts() {
 	
-	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick-theme.css', array(), '1.0.0', 'all' );
+	wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array(), '1.0.0', 'all' );
+	wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css', array(), '1.0.0', 'all' );
 	wp_enqueue_style( 'fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), 'all' );
 	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap', array(), 'all' );
 	wp_enqueue_style( 'default-style', get_template_directory_uri() . '/assets/css/default.css', array(), _S_VERSION, 'all' );
@@ -223,12 +224,6 @@ require get_template_directory() . '/inc/kalni-settings.php';
 require get_template_directory() . '/inc/theme-shortcodes/theme-shortcodes.php';
 
 /**
- * Codestar framework
- */
-require_once dirname( __FILE__ ) .'/inc//codestar-framework/codestar-framework.php';
-require_once dirname( __FILE__ ) .'/inc/metabox-and-options.php';
-
-/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
@@ -241,3 +236,5 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+

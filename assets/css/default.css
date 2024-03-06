@@ -54,9 +54,6 @@ img {
     max-width: 100%;
     height: auto;
 }
-svg {
-    z-index: -1;
-}
 
 /* Font */
 h1, h2, h3, h4, h5, h6 {
@@ -357,6 +354,9 @@ h1, h2, h3, h4, h5, h6 {
 .g-gap-30 {
     grid-gap: 30px;
 }
+.g-gap-32 {
+    grid-gap: 32px;
+}
 .g-gap-35 {
     grid-gap: 35px;
 }
@@ -433,13 +433,26 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+.d-inline {
+    display: inline !important;
+}
+
 .d-inline-block {
     display: inline-block !important;
 }
 .d-none {
     display: none;
 }
-
+/* Text transform */
+.tt-upercase {
+    text-transform: uppercase;
+}
+.tt-capitalize {
+    text-transform: capitalize;
+}
+.tt-lowercase {
+    text-transform: lowercase;
+}
 /* align css */
 .text-center {
     text-align: center;

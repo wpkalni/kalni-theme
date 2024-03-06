@@ -264,29 +264,27 @@ function kalni_header_section_customize_register($wp_customize)
 		)
 	);
 
-	// Login/account
 	//add setting
 	$wp_customize->add_setting(
-		'hide_header_product_list',
+		'header_account_color',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
+			'transport' => 'refresh',
+			'capability' => 'edit_theme_options'
 		)
 	);
 
-
-	//add control
-	$wp_customize->add_control(
-		'hide_header_product_list',
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_account_color',
 		array(
-			'label' => 'Hide product list',
-			'type' => 'checkbox',
-			'section' => 'header_section',
-			'settings' => 'hide_header_product_list'
+			'label'    => __( 'User color', 'text-domain' ),
+			'section'  => 'header_section',
+			'settings' => 'header_account_color',
 		)
-	);
+	));
 
+	
+	// Wish
 	//add setting
 	$wp_customize->add_setting(
 		'hide_header_wish',
@@ -308,6 +306,69 @@ function kalni_header_section_customize_register($wp_customize)
 			'settings' => 'hide_header_wish'
 		)
 	);
+		
+	//add setting
+	$wp_customize->add_setting(
+		'header_wish_color',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh',
+			'capability' => 'edit_theme_options'
+		)
+	);
+
+	//add control
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_wish_color',
+		array(
+			'label'    => __( 'Wishes color', 'text-domain' ),
+			'section'  => 'header_section',
+			'settings' => 'header_wish_color',
+		)
+	));
+
+	// Shuffle product
+	//add setting
+	$wp_customize->add_setting(
+		'hide_header_product_list',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh'
+		)
+	);
+
+
+	//add control
+	$wp_customize->add_control(
+		'hide_header_product_list',
+		array(
+			'label' => 'Hide product list',
+			'type' => 'checkbox',
+			'section' => 'header_section',
+			'settings' => 'hide_header_product_list'
+		)
+	);
+	
+	//add setting
+	$wp_customize->add_setting(
+		'header_shuffle_color',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh',
+			'capability' => 'edit_theme_options'
+		)
+	);
+
+	//add control
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_shuffle_color',
+		array(
+			'label'    => __( 'Shuffle color', 'text-domain' ),
+			'section'  => 'header_section',
+			'settings' => 'header_shuffle_color',
+		)
+	));
 
 	// Login/account
 	//add setting
@@ -332,6 +393,27 @@ function kalni_header_section_customize_register($wp_customize)
 		)
 	);
 
+		
+	//add setting
+	$wp_customize->add_setting(
+		'header_cart_color',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh',
+			'capability' => 'edit_theme_options'
+		)
+	);
+
+	//add control
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_cart_color',
+		array(
+			'label'    => __( 'Cart color', 'text-domain' ),
+			'section'  => 'header_section',
+			'settings' => 'header_cart_color',
+		)
+	));
+
 
 	//add setting
 	$wp_customize->add_setting(
@@ -342,6 +424,8 @@ function kalni_header_section_customize_register($wp_customize)
 			'transport' => 'refresh'
 		)
 	);
+
+	
 
 	//add control
 	$wp_customize->add_control(

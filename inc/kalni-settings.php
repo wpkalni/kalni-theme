@@ -36,15 +36,27 @@ function kalni_get_theme_settings(){
     $hide_header_account = get_theme_mod( 'hide_header_account' );
     $setting['hide_header_account'] = strlen($hide_header_account) > 0 ? $hide_header_account : false;
     
+    $header_account_color = get_theme_mod( 'header_account_color' );
+    $setting['header_account_color'] = strlen($header_account_color) > 0 ? $header_account_color : false;
+    
     // phone
     $hide_header_wish = get_theme_mod( 'hide_header_wish' );
     $setting['hide_header_wish'] = strlen($hide_header_wish) > 0 ? $hide_header_wish : false;
 
+    $header_wish_color = get_theme_mod( 'header_wish_color' );
+    $setting['header_wish_color'] = strlen($header_wish_color) > 0 ? $header_wish_color : false;
+
     $hide_header_product_list = get_theme_mod( 'hide_header_product_list' );
     $setting['hide_header_product_list'] = strlen($hide_header_product_list) > 0 ? $hide_header_product_list : false;
+
+    $header_shuffle_color = get_theme_mod( 'header_shuffle_color' );
+    $setting['header_shuffle_color'] = strlen($header_shuffle_color) > 0 ? $header_shuffle_color : false;
     
     $hide_header_cart = get_theme_mod( 'hide_header_cart' );
     $setting['hide_header_cart'] = strlen($hide_header_cart) > 0 ? $hide_header_cart : false;
+    
+    $header_cart_color = get_theme_mod( 'header_cart_color' );
+    $setting['header_cart_color'] = strlen($header_cart_color) > 0 ? $header_cart_color : false;
 
     
     $hide_header_cats = get_theme_mod( 'hide_header_cats' );

@@ -132,7 +132,7 @@ function kalni_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'kalni' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="widget-title">',
+			'before_title'  => '<h3 class="widget-title tt-capitalize">',
 			'after_title'   => '</h3>',
 		)
 	);
@@ -152,7 +152,7 @@ function kalni_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'kalni' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="widget-title fw-600 fz-24 clr-black">',
+			'before_title'  => '<h3 class="widget-title fw-600 fz-24 clr-black tt-capitalize">',
 			'after_title'   => '</h3>',
 		)
 	);
@@ -163,8 +163,19 @@ function kalni_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'kalni' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="widget-title fw-600 fz-24 clr-black">',
+			'before_title'  => '<h3 class="widget-title fw-600 fz-24 clr-black tt-capitalize">',
 			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'WooCommerce sidebar', 'kalni' ),
+			'id'            => 'woocommerce',
+			'description'   => esc_html__( 'Add widgets here.', 'kalni' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h6 class="widget-title fw-600 fz-24 clr-black tt-capitalize">',
+			'after_title'   => '</h6>',
 		)
 	);
 }
@@ -236,5 +247,33 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * WooCommerce mini cart shortcode
+ */
+function kalni_mini_cart_shortcode($atts) { 
+
+    echo '<a href="#" class="kalni-minicart-dropdown relative" data-toggle="dropdown"> ';
+        echo '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+				<path d="M8.4898 18.9998C8.0998 18.9998 7.7798 18.6998 7.7398 18.3098C7.6998 17.8998 8.00981 17.5298 8.41981 17.4998L19.3198 16.5898C22.3798 16.3298 22.8498 15.8798 23.1898 12.8198L23.9898 5.65978C24.0298 5.24978 24.3998 4.95978 24.8198 4.99978C25.2298 5.04978 25.5298 5.41978 25.4798 5.82978L24.6798 12.9898C24.2598 16.7698 23.2298 17.7698 19.4398 18.0898L8.5598 18.9998C8.5398 18.9998 8.5198 18.9998 8.4898 18.9998Z" fill="#354054"/>
+				<path d="M26 6.5H6C5.59 6.5 5.25 6.16 5.25 5.75C5.25 5.34 5.58 5 6 5H26C26.41 5 26.75 5.34 26.75 5.75C26.75 6.16 26.41 6.5 26 6.5Z" fill="#354054"/>
+				<path d="M6 26.5C4.21 26.5 2.75 25.04 2.75 23.25C2.75 21.46 4.2 20 6 20C7.8 20 9.25 21.46 9.25 23.25C9.25 25.04 7.79 26.5 6 26.5ZM6 21.5C5.04 21.5 4.25 22.29 4.25 23.25C4.25 24.21 5.03 25 6 25C6.97 25 7.75 24.21 7.75 23.25C7.75 22.29 6.96 21.5 6 21.5Z" fill="#354054"/>
+				<path d="M19.75 26.5C17.96 26.5 16.5 25.04 16.5 23.25C16.5 21.46 17.96 20 19.75 20C21.54 20 23 21.46 23 23.25C23 25.04 21.54 26.5 19.75 26.5ZM19.75 21.5C18.79 21.5 18 22.29 18 23.25C18 24.21 18.79 25 19.75 25C20.71 25 21.5 24.21 21.5 23.25C21.5 22.29 20.71 21.5 19.75 21.5Z" fill="#354054"/>
+				<path d="M17.25 24H8.5C8.09 24 7.75 23.66 7.75 23.25C7.75 22.84 8.09 22.5 8.5 22.5H17.25C17.66 22.5 18 22.84 18 23.25C18 23.66 17.66 24 17.25 24Z" fill="#354054"/>
+				<path d="M6.78 21.5C6.62 21.5 6.46 21.45 6.32 21.34C5.99 21.09 5.93 20.62 6.18 20.29L7.38 18.74C7.71 18.32 7.82 17.79 7.68 17.28L3.97 2.83C3.77 2.05 3.04 1.5 2.2 1.5H1C0.59 1.5 0.25 1.16 0.25 0.75C0.25 0.34 0.58 0 1 0H2.21C3.74 0 5.06 1.01 5.43 2.46L9.15 16.91C9.4 17.87 9.19 18.87 8.58 19.66L7.38 21.21C7.23 21.4 7.01 21.5 6.78 21.5Z" fill="#354054"/>
+			</svg>';
+		echo '<span class="count-cart-items cart-count absolute bg-red clr-white br-100 text-center">';
+			echo WC()->cart->get_cart_contents_count();
+		echo '</span>';
+    echo '</a>';
+    echo '<ul class="kalni-minicart-dropdown-menu dropdown-menu-mini-cart list-unstyled">';
+        echo '<li>';
+            echo '<div class="widget_shopping_cart_content">';
+                woocommerce_mini_cart();
+            echo '</div>';
+        echo '</li>';
+    echo '</ul>';
+}
+add_shortcode( 'kalni_mini_cart', 'kalni_mini_cart_shortcode' );
 
 

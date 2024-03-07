@@ -174,7 +174,7 @@ function kalni_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'kalni' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h6 class="widget-title fw-600 fz-24 clr-black tt-capitalize">',
+			'before_title'  => '<h6 class="widget-title fz-14 fw-600 lh-24 clr-black tt-capitalize">',
 			'after_title'   => '</h6>',
 		)
 	);

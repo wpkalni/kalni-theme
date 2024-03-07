@@ -1,8 +1,8 @@
 <?php
 /**
- * Loop Price
+ * Sidebar
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/loop/price.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/global/sidebar.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -19,9 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-global $product;
-?>
+get_sidebar( 'shop' );
 
-<?php if ( $price_html = $product->get_price_html() ) : ?>
-	<span class="price fz-16 clr-blue fw-600 lh-24"><?php echo $price_html; ?></span>
-<?php endif; ?>
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

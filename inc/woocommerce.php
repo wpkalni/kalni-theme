@@ -118,7 +118,13 @@ if ( ! function_exists( 'kalni_woocommerce_wrapper_before' ) ) {
 	 */
 	function kalni_woocommerce_wrapper_before() {
 		?>
-			<main id="primary" class="site-main">
+			<div class="single-product-breadcrumb bg-white">
+				<div class="container-85">
+					<?php woocommerce_breadcrumb(); ?>
+				</div>
+			</div>
+			<main id="primary" class="site-main kalni-woo-wrapper">
+				<div class="container-85">
 		<?php
 	}
 }
@@ -134,6 +140,7 @@ if ( ! function_exists( 'kalni_woocommerce_wrapper_after' ) ) {
 	 */
 	function kalni_woocommerce_wrapper_after() {
 		?>
+				</div>
 			</main><!-- #main -->
 		<?php
 	}

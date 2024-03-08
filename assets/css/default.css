@@ -86,6 +86,9 @@ h1, h2, h3, h4, h5, h6 {
 .fz-12 {
     font-size: 12px;
 }
+.fz-13 {
+    font-size: 13px;
+}
 .fz-14 {
     font-size: 14px;
 }
@@ -966,8 +969,11 @@ a.button.add_to_cart_button:hover {
     margin-bottom: 20px;
 }
 
-.woocommerce-product-rating {
+.woocommerce-product-rating-wrap {
     padding-bottom: 30px;
+}
+
+.woocommerce-product-rating {
     border-bottom: 2px solid grey;
 }
 

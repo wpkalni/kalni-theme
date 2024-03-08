@@ -28,16 +28,20 @@ if ( ! wc_review_ratings_enabled() ) {
 $rating_count = $product->get_rating_count();
 $review_count = $product->get_review_count();
 $average      = $product->get_average_rating();
+?>
+<div class="woocommerce-product-rating-wrap flex align-center f-gap-10">
+	<?php
+	if ( $rating_count > 0 ) : ?>
 
-if ( $rating_count > 0 ) : ?>
+		<div class="woocommerce-product-rating flex align-center f-gap-5">
+			<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
+			<?php if ( comments_open() ) : ?>
+				<?php //phpcs:disable ?>
+				<a href="#reviews" class="woocommerce-review-link fz-13 fw-400 lh-20 clr-black-dark" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
+				<?php // phpcs:enable ?>
+			<?php endif ?>
+		</div>
 
-	<div class="woocommerce-product-rating flex align-center f-gap-5">
-		<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
-		<?php if ( comments_open() ) : ?>
-			<?php //phpcs:disable ?>
-			<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
-			<?php // phpcs:enable ?>
-		<?php endif ?>
-	</div>
-
-<?php endif; ?>
+	<?php endif; ?>
+	<?php echo kalni_product_sold_count(); ?>
+</div>

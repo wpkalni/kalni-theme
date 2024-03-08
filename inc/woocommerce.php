@@ -233,3 +233,11 @@ if ( ! function_exists( 'kalni_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+add_action( 'woocommerce_single_product_summary', 'kalni_product_sold_count', 11 );
+  
+function kalni_product_sold_count() {
+   global $product;
+   $units_sold = $product->get_total_sales();
+   if ( $units_sold ) echo '<span class="fz-13 fw-400 lh-26 clr-black-light">' . sprintf( __( 'Sold: %s', 'woocommerce' ), $units_sold ) . '</span>';
+}

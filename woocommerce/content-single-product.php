@@ -60,6 +60,7 @@ $stock = get_post_meta( get_the_ID(), '_stock', true );
 			 * @hooked WC_Structured_Data::generate_product_data() - 60
 			 */
 			do_action( 'woocommerce_single_product_summary' );
+			
 			?>
 			<?php if( $stock > 0 ) { ?>
 				<div class="product-stock">

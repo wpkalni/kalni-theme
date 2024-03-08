@@ -32,12 +32,14 @@ if ( class_exists( 'WooCommerce' ) ) {
                 $q->the_post();
                 global $product;
                 $post_id = get_the_ID();
+                $permalink = get_the_permalink( $post_id );
                 $title = get_the_title( $post_id );
 
                 $terms = get_the_terms( get_the_ID(), 'product_cat' );
                 if ( $terms && ! is_wp_error( $terms ) ) :
                     if ( ! empty( $terms ) ) {
                         $single_cat = $terms[0]->name;
+                        $single_cat_link = get_category_link( $terms[0]->term_id );
                     }
                 endif;
 
@@ -65,8 +67,8 @@ if ( class_exists( 'WooCommerce' ) ) {
                         endif;
                     $html .= '</div>
                     <div class="product-slide-content text-left">
-                        <h4 class="fz-16 fw-600 lh-21 clr-black">'.esc_html($title).'</h4>
-                        <div>'.$single_cat.'</div>';
+                        <a href="'.esc_url( $permalink ).'"><h4 class="fz-16 fw-600 lh-21 clr-black">'.esc_html($title).'</h4></a>
+                        <div><a href="'.esc_url( $single_cat_link ).'">'.esc_html( $single_cat ).'</a></div>';
                         
                         if ($average = $product->get_average_rating()) {
                             $html .= '<div class="category-star-rating flex f-gap-5 align-center"><div class="star-rating" title="'.sprintf(__( 'Rated %s out of 5', 'woocommerce' ), $average).'"><span style="width:'.( ( $average / 5 ) * 100 ) . '%"><strong itemprop="ratingValue" class="rating">'.$average.'</strong> '.__( 'out of 5', 'woocommerce' ).'</span></div><span class="fz-16 fw-500 clr-grey">('.$product->get_review_count().')</span></div>';

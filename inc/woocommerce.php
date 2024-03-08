@@ -21,7 +21,7 @@ function kalni_woocommerce_setup() {
 		'woocommerce',
 		array(
 			'thumbnail_image_width' => 150,
-			'single_image_width'    => 300,
+			'single_image_width'    => 500,
 			'product_grid'          => array(
 				'default_rows'    => 3,
 				'min_rows'        => 1,
@@ -92,8 +92,8 @@ add_filter( 'body_class', 'kalni_woocommerce_active_body_class' );
  */
 function kalni_woocommerce_related_products_args( $args ) {
 	$defaults = array(
-		'posts_per_page' => 3,
-		'columns'        => 3,
+		'posts_per_page' => 4,
+		'columns'        => 4,
 	);
 
 	$args = wp_parse_args( $defaults, $args );
@@ -118,11 +118,13 @@ if ( ! function_exists( 'kalni_woocommerce_wrapper_before' ) ) {
 	 */
 	function kalni_woocommerce_wrapper_before() {
 		?>
-			<div class="single-product-breadcrumb bg-white">
-				<div class="container-85">
-					<?php woocommerce_breadcrumb(); ?>
+			<?php if (is_single()) :	?>
+				<div class="single-product-breadcrumb bg-white">
+					<div class="container-85">
+						<?php woocommerce_breadcrumb(); ?>
+					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 			<main id="primary" class="site-main kalni-woo-wrapper">
 				<div class="container-85">
 		<?php

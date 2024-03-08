@@ -985,3 +985,6 @@ a.button.add_to_cart_button:hover {
     margin: 30px 0;
     padding: 15px 30px;
 }
+.related-products .products {
+    grid-template-columns: repeat(4, 1fr);
+}

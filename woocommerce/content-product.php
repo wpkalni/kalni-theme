@@ -84,7 +84,7 @@ endif;
 			</a>
 		</h4>
 		<div>
-			<a href="<?php echo the_permalink( get_the_ID() ); ?>">
+			<a href="<?php echo get_category_link( get_the_ID() ); ?>">
 				<?php echo esc_html( $single_cat ); ?>
 			</a>
 		</div>

@@ -241,3 +241,167 @@ function kalni_product_sold_count() {
    $units_sold = $product->get_total_sales();
    if ( $units_sold ) echo '<span class="fz-13 fw-400 lh-26 clr-black-light">' . sprintf( __( 'Sold: %s', 'woocommerce' ), $units_sold ) . '</span>';
 }
+
+
+// Plus minus in product 
+// 1. Show plus minus buttons
+add_action( 'woocommerce_after_quantity_input_field', 'metiro_display_quantity_plus' ); 
+function metiro_display_quantity_plus() {
+   echo '<button type="button" class="plus" >+</button>';
+}
+  
+add_action( 'woocommerce_before_quantity_input_field', 'metiro_display_quantity_minus' ); 
+function metiro_display_quantity_minus() {
+   echo '<button type="button" class="minus" >-</button>';
+}
+  
+// 2. Trigger update quantity script
+add_action( 'wp_footer', 'kalni_add_cart_quantity_plus_minus' );
+function kalni_add_cart_quantity_plus_minus() {
+   if ( ! is_product() && ! is_cart() ) return; 
+   wc_enqueue_js( "          
+      $('form.cart,form.woocommerce-cart-form').on( 'click', 'button.plus, button.minus', function() {
+  
+         var qty = $( this ).parent( '.quantity' ).find( '.qty' );
+         var val = parseFloat(qty.val());
+         var max = parseFloat(qty.attr( 'max' ));
+         var min = parseFloat(qty.attr( 'min' ));
+         var step = parseFloat(qty.attr( 'step' ));
+ 
+         if ( $( this ).is( '.plus' ) ) {
+            if ( max && ( max <= val ) ) {
+               qty.val( max );
+            } else {
+               qty.val( val + step );
+            }
+         } else {
+            if ( min && ( min >= val ) ) {
+               qty.val( min );
+            } else if ( val > 1 ) {
+               qty.val( val - step );
+            }
+         }
+ 
+      });
+        
+   " );
+} 
+
+// Add buy now button in product page 
+add_action( 'woocommerce_after_shop_loop_item', 'cssigniter_buy_now_button', 15 );
+add_action( 'woocommerce_after_add_to_cart_button', 'cssigniter_buy_now_button' );
+function cssigniter_buy_now_button() {
+	global $product;
+
+	if ( 'simple' !== $product->get_type()
+	|| ! $product->is_purchasable()
+	|| ! $product->is_in_stock() ) {
+		return;
+	}
+
+	$id = $product->get_ID();
+
+	$classes = implode(
+		' ',
+		array_filter(
+			array(
+				'button',
+				'product_type_' . $product->get_type(),
+				'add_to_cart_button',
+			)
+		)
+	);
+
+	ob_start();
+
+	?>
+	<a
+	href="<?php echo esc_url( wc_get_checkout_url() ); ?>?add-to-cart=<?php echo absint( $id ); ?>"
+	class="<?php echo esc_attr( $classes ); ?> bg-blue clr-white fz-14 fw-700 lh-42 tt-capitalize"
+	rel="nofollow">
+	<?php echo esc_html_e( 'Buy Now', 'kalni' ); ?>
+	</a>
+
+	<?php
+
+	echo ob_get_clean();
+}
+
+
+// Display product attributes in product 
+add_action( 'woocommerce_single_product_summary', 'kalni_display_product_attributes', 25 );
+function kalni_display_product_attributes(){
+    // HERE define the desired product attributes to be displayed
+    $defined_attributes = array('fyllighet', 'carrier', 'billing-e-number');
+
+    global $product;
+    $attributes = $product->get_attributes();
+
+    if ( ! $attributes ) {
+        return;
+    }
+
+    $out = '<ul class="kalni-attributes">';
+
+    foreach ( $attributes as $attribute ) {
+
+        // Get the product attribute slug from the taxonomy
+        $attribute_slug = str_replace( 'pa_', '', $attribute->get_name() );
+
+        // skip all non desired product attributes
+        if ( ! in_array($attribute_slug, $defined_attributes) ) {
+            continue;
+        }
+
+        // skip variations
+        if ( $attribute->get_variation() ) {
+            continue;
+        }
+
+        $name = $attribute->get_name();
+
+        if ( $attribute->is_taxonomy() ) {
+
+            $terms = wp_get_post_terms( $product->get_id(), $name, 'all' );
+            // get the taxonomy
+            $tax = $terms[0]->taxonomy;
+            // get the tax object
+            $tax_object = get_taxonomy($tax);
+            // get tax label
+            if ( isset ( $tax_object->labels->singular_name ) ) {
+                $tax_label = $tax_object->labels->singular_name;
+            } elseif ( isset( $tax_object->label ) ) {
+                $tax_label = $tax_object->label;
+                // Trim label prefix since WC 3.0
+                if ( 0 === strpos( $tax_label, 'Product ' ) ) {
+                   $tax_label = substr( $tax_label, 8 );
+                }                
+            }
+
+            $out .= '<li class="' . esc_attr( $name ) . '">';
+            $out .= '<p class="attribute-label">' . esc_html( $tax_label ) . ': </p> ';
+            $tax_terms = array();
+
+            foreach ( $terms as $term ) {
+                $single_term = esc_html( $term->name );
+                // Insert extra code here if you want to show terms as links.
+                array_push( $tax_terms, $single_term );
+            }
+
+            $out .= '<span class="attribute-value">' . implode(', ', $tax_terms) . '</span><progress value="' . implode(', ', $tax_terms) .
+            '" max="10"><div class="progress-bar"><span style="width:'
+            . implode(', ', $tax_terms) . '0%">'
+            . implode(', ', $tax_terms) . '</span></div></progress></li>';
+
+        } else {
+            $value_string = implode( ', ', $attribute->get_options() );
+            $out .= '<li class="' . sanitize_title($name) . ' ' . sanitize_title( $value_string ) . '">';
+            $out .= '<p class="attribute-label">' . $name . ': </p> ';
+            $out .= '<progress value="' . esc_html( $value_string ) . '" max="10"></progress></li>';
+        }
+    }
+
+    $out .= '</ul>';
+
+    echo $out;
+}

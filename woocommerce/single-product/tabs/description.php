@@ -24,7 +24,7 @@ $heading = apply_filters( 'woocommerce_product_description_heading', __( 'Descri
 ?>
 
 <?php if ( $heading ) : ?>
-	<h2><?php echo esc_html( $heading ); ?></h2>
+	<h2 class="fz-16 lh-20 fw-600"><?php echo esc_html( $heading ); ?></h2>
 <?php endif; ?>
 
-<?php the_content(); ?>
+<div class="desc-tab fz-14 fw-400 lh-24 clr-black-light"><?php the_content(); ?></div>

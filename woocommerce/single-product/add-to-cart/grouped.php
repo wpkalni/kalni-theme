@@ -21,7 +21,7 @@ global $product, $post;
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<form class="cart grouped_form" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+<form class="cart grouped_form flex f-gap-15 align-center" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
 	<table cellspacing="0" class="woocommerce-grouped-product-list group_table">
 		<tbody>
 			<?php

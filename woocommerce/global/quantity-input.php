@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
 
 ?>
-<div class="quantity">
+<div class="quantity inline-flex justify-center align-center br-3">
 	<?php
 	/**
 	 * Hook to output something before the quantity input field.
@@ -38,7 +38,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 		type="<?php echo esc_attr( $type ); ?>"
 		<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
 		id="<?php echo esc_attr( $input_id ); ?>"
-		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
+		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?> clr-black-dark"
 		name="<?php echo esc_attr( $input_name ); ?>"
 		value="<?php echo esc_attr( $input_value ); ?>"
 		aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"

@@ -20,4 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<p class="stock <?php echo esc_attr( $class ); ?>"><?php echo wp_kses_post( $availability ); ?></p>
+<p class="stock <?php echo esc_attr( $class ); ?> fz-15 fw-400 lh-24 clr-green"><span class="fz-15 fw-400 lh-24 clr-black-dark"><?php esc_html_e( 'Availability: ', 'woocommerce' ); ?></span><?php echo wp_kses_post( $availability ); ?></p>

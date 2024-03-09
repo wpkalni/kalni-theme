@@ -19,6 +19,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
+$attribute = $product->get_attribute( 'brand' );
+
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -31,7 +33,6 @@ if ( post_password_required() ) {
 	return;
 }
 
-$stock = get_post_meta( get_the_ID(), '_stock', true );
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="kalni-woo-single-grid grid grid-3-4 g-gap-30 bg-white br-8">
@@ -47,6 +48,10 @@ $stock = get_post_meta( get_the_ID(), '_stock', true );
 		?>
 		<div class="summary entry-summary">
 			<?php
+			woocommerce_template_single_title();
+			woocommerce_template_single_rating();
+			woocommerce_template_single_price();
+			woocommerce_template_single_excerpt();
 			/**
 			 * Hook: woocommerce_single_product_summary.
 			 *
@@ -59,18 +64,19 @@ $stock = get_post_meta( get_the_ID(), '_stock', true );
 			 * @hooked woocommerce_template_single_sharing - 50
 			 * @hooked WC_Structured_Data::generate_product_data() - 60
 			 */
-			do_action( 'woocommerce_single_product_summary' );
+			// do_action( 'woocommerce_single_product_summary' );
 			
+			woocommerce_template_single_add_to_cart(); 
+			woocommerce_template_single_meta();
+
+			echo kalni_display_product_attributes();
+
+			// echo $product_attributes;
+			// echo wc_display_product_attributes( $product );
+			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400"><b class="fw-600">Brand: </b>' .$attribute. '';
+
+			woocommerce_template_single_sharing();
 			?>
-			<?php if( $stock > 0 ) { ?>
-				<div class="product-stock">
-					<span class="clr-green fw-500"><i class="fa-solid fa-check"></i> <?php echo esc_html( 'Availability: ', 'kalni' ); ?></span> 
-					<span class="fw-500 clr-black-light"><?php echo esc_html( $stock ); ?></span>
-						<span class="clr-grey fw-500"> <?php echo esc_html( 'in stocks', 'kalni' ); ?></sapn>
-				</div>
-				<?php } else if($stock < 0) { ?>
-					<div class="product-stock clr-red"><i class="fa-solid fa-xmark"></i> <?php echo esc_html( 'Out of stock', 'kalni' ); ?></div>
-				<?php } ?>
 		</div>
 	</div>
 		<?php

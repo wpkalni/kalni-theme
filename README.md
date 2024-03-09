@@ -2,6 +2,14 @@
 
 _s
 ===
+Shortcodes:
+------------
+1. [product_card_slider] (homepage product card - slider)
+2. [product_cat_box] (homepage product category - slider)
+3. [blog_posts] (homepage blog posts)
+4. [kalni_mini_cart] (minicart shortcode)
+
+
 
 Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
 

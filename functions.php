@@ -45,6 +45,8 @@ function kalni_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'blog-img', 306, 196, true );
+	add_image_size( 'blog-single-img', 922, 489, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -233,6 +235,11 @@ require get_template_directory() . '/inc/kalni-settings.php';
  * Theme shortcodes.
  */
 require get_template_directory() . '/inc/theme-shortcodes/theme-shortcodes.php';
+
+/**
+ * Neumeric pagination.
+ */
+require get_template_directory() . '/inc/neumeric-pagination.php';
 
 /**
  * Load Jetpack compatibility file.

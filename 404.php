@@ -14,7 +14,7 @@ get_header();
 
 		<div class="container-85">
 			<section class="error-404 not-found">
-				<header class="page-header">
+				<header class="page-header error-page-header">
 					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'kalni' ); ?></h1>
 				</header><!-- .page-header -->
 

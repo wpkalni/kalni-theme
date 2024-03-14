@@ -67,7 +67,7 @@ if ( class_exists( 'WooCommerce' ) ) {
                         endif;
                     $html .= '</div>
                     <div class="product-slide-content text-left">
-                        <a href="'.esc_url( $permalink ).'"><h4 class="fz-16 fw-600 lh-21 clr-black">'.esc_html($title).'</h4></a>
+                        <h4 class="product-card-title fz-16 fw-600 lh-21"><a class="clr-black" href="'.esc_url( $permalink ).'">'.esc_html($title).'</a></h4>
                         <div><a href="'.esc_url( $single_cat_link ).'">'.esc_html( $single_cat ).'</a></div>';
                         
                         if ($average = $product->get_average_rating()) {
@@ -79,7 +79,7 @@ if ( class_exists( 'WooCommerce' ) ) {
                                 $html .= '<div class="sale-price clr-blue fz-24 fw-600">'.$sale_price.'</div>';
                             }
                             if( !empty($regular_price) ) {
-                                $html .= '<div class="regular-price clr-grey fz-16 fw-500"> - ('.$regular_price.')</div>';
+                                $html .= '<div class="regular-price clr-grey fz-16 fw-500"> '.$regular_price.'</div>';
                             }
                         $html .= '</div>';
 
@@ -178,17 +178,21 @@ if ( class_exists( 'WooCommerce' ) ) {
 // Blog posts
 function kalni_blog_posts($atts) {
     extract( shortcode_atts( array(
-        'count' => '-1'
+        'count' => '-1',
+        'post_type' => 'post',
+        'cat_id'   => ''
     ), $atts ));
 
 
     $q = new WP_Query( 
         array(
             'posts_per_page' => $count,
-            'post_type'      => 'post',
+            'post_type'      => $post_type,
             'orderby'        => 'menu_order',
             'order'          => 'DSC',
             'post_status'	=> 'publish',
+            'post__not_in'   => get_option("sticky_posts"),
+            'cat'      => $cat_id
         ) 
     );
         $html = '
@@ -206,15 +210,14 @@ function kalni_blog_posts($atts) {
                 $html .= '
                     <div class="single-post-grid text-center bg-white br-12">
                         '.$thumb.'
-                        
                         <div class="post-grid-content">
                             <div class="post-grid-meta flex align-center justify-center f-gap-10">
                                 <span class="author-by fz-16 fw-400 lh-16 clr-grey">by</span>
-                                <a class="fz-16 fw-400 lh-16 clr-black-light" href="'.esc_url( $author_link ).'" class="author-name">'.$author.'</a>
-                                <a class="fz-16 fw-400 lh-16 clr-grey" href="'.esc_url( $link ).'" class="author-name"> - '.esc_html( $date ).'</a>
+                                <a class="author-name fz-16 fw-400 lh-16 clr-black-light" href="'.esc_url( $author_link ).'">'.$author.'</a>
+                                <a class="post-date fz-16 fw-400 lh-16 clr-grey" href="'.esc_url( $link ).'"> - '.esc_html( $date ).'</a>
                             </div>
-                            <a href="'.esc_url( $link ).'"><h3 class="fz-16 fw-500 lh-16 clr-black">'.esc_html( $title ).'</h3></a>
-                            <a class="fz-16 fw-400 lh-16 clr-grey readmore-btn" href="'.esc_url( $link ).'" class="author-name">Read more <i class="fa fa-long-arrow-right"></i></a>
+                            <a href="'.esc_url( $link ).'"><h3 class="fz-16 fw-500 lh-24 clr-black">'.esc_html( $title ).'</h3></a>
+                            <a class="fz-16 fw-400 lh-16 clr-grey readmore-btn" href="'.esc_url( $link ).'">Read more <i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 ';
@@ -225,3 +228,56 @@ function kalni_blog_posts($atts) {
         
 }
 add_shortcode( 'blog_posts', 'kalni_blog_posts' );
+
+// Recent posts
+function kalni_recent_posts_shortcode($atts) {
+    extract( shortcode_atts( array(
+        'count' => '-1',
+        'post_type' => 'post',
+        'cat_id'   => ''
+    ), $atts ));
+
+
+    $q = new WP_Query( 
+        array(
+            'posts_per_page' => $count,
+            'post_type'      => $post_type,
+            'orderby'        => 'menu_order',
+            'order'          => 'DSC',
+            'post_status'	=> 'publish',
+            'post__not_in'   => get_option("sticky_posts"),
+            'cat'      => $cat_id
+        ) 
+    );
+        $html = '
+        <div class="kalni-recent-post-grid grid g-gap-30">';
+            while ( $q->have_posts()) :
+                $q->the_post();
+                $post_id = get_the_ID();
+                $link = get_the_permalink( $post_id );
+                $thumb = get_the_post_thumbnail( $post_id, 'full' );
+                $title = get_the_title( $post_id );
+                $date = get_the_date( 'd.m.y', $post_id );
+                $author_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
+                $author = get_the_author( $post_id );
+
+                $html .= '
+                    <div class="single-recent-post-grid grid grid-1-4 align-center g-gap-10">
+                        '.$thumb.'
+                        <div class="recent-post-grid-content grid g-gap-8">
+                            <a href="'.esc_url( $link ).'"><h4 class="fz-16 fw-500 lh-24 clr-black">'.esc_html( $title ).'</h4></a>
+                            <div class="post-grid-meta flex align-center f-gap-5">
+                                <span class="author-by fz-11 fw-400 lh-11 clr-grey">by</span>
+                                <a class="author-name fz-11 fw-500 lh-11 clr-black" href="'.esc_url( $author_link ).'">'.$author.'</a>
+                                <a class="post-date fz-11 fw-400 lh-11 clr-grey" href="'.esc_url( $link ).'"> - '.esc_html( $date ).'</a>
+                            </div>
+                        </div>
+                    </div>
+                ';
+            endwhile;
+        '</div>';
+    wp_reset_query();
+    return $html;
+        
+}
+add_shortcode( 'recent_posts', 'kalni_recent_posts_shortcode' );

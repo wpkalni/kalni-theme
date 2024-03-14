@@ -78,8 +78,8 @@ endif;
 	</div>
 	<div class="product-slide-content text-left">
 
-		<h4 class="fz-16 fw-600 lh-21 clr-black">
-			<a href="<?php echo the_permalink( get_the_ID() ); ?>">
+		<h4 class="product-card-title fz-16 fw-600 lh-21">
+			<a class="clr-black" href="<?php echo the_permalink( get_the_ID() ); ?>">
 				<?php echo esc_html( the_title() ); ?>
 			</a>
 		</h4>

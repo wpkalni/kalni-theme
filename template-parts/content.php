@@ -16,7 +16,7 @@
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title fz-24 fw-600 lh-28 clr-black">', '</h1>' );
 		else :
-			the_title( '<h2 class="entry-title fz-16 fw-500 lh-16 text-center"><a class="clr-black" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			the_title( '<h2 class="entry-title fz-16 fw-500 lh-24 text-center"><a class="clr-black" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 
 		if ( 'post' === get_post_type() ) :

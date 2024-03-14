@@ -26,7 +26,7 @@ if ( have_posts() ) :
 						<div class="blog-page-sidebar">
 							<?php get_sidebar(); ?>
 						</div>
-						<div class="blog-single-content bg-white br-3">
+						<div class="blog-single-content bg-white br-3 overflow-hidden">
 							<?php
 							while ( have_posts() ):
 								the_post();
@@ -44,20 +44,16 @@ if ( have_posts() ) :
 
 								<?php $author_link = get_author_posts_url(get_the_author_meta( 'ID' )); ?>
 								<?php if($author_link) : ?>
-									<div class="author-box grid">
+									<div class="author-box grid g-gap-20 align-center">
 										<div class="author-avatar">
 											<a href="<?php echo esc_url($author_link); ?>" target="_blank">
 												<?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
 											</a>
 										</div>
 										<div class="author-content">
-											<?php $display_name = get_the_author_meta( 'display_name', $post->post_author ); ?>
-											<a href="<?php echo esc_url($author_link); ?>" class="author-name">
-												<?php esc_html_e( 'Author: ', 'aanglo' ); ?>
-												<?php echo esc_html( $display_name ); ?>
-											</a>
 											<h5 class="fz-18 lh-22 fw-700 clr-black"><?php esc_html_e( 'Share this post:', 'kalni' ); ?></h5>
 											<?php echo wpautop( get_the_author_meta( 'description' ) ); ?>
+											<a class="author-posts fz-14 fw-600 lh-24 clr-blue flex align-center f-gap-5" href="<?php echo esc_url($author_link); ?>"><?php esc_html_e( 'See all author posts ', 'kalni' ); ?><i class="fa-solid fa-arrow-right-long"></i></a>
 										</div>
 									</div> <!-- end author-box -->
 								<?php endif; ?>

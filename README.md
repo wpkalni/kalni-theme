@@ -8,6 +8,7 @@ Shortcodes:
 2. [product_cat_box] (homepage product category - slider)
 3. [blog_posts] (homepage blog posts)
 4. [kalni_mini_cart] (minicart shortcode)
+5. [recent_posts] (recent post)
 
 
 

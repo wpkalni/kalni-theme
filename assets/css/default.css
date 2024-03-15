@@ -51,9 +51,27 @@ abbr[title] {
 	text-decoration: underline dotted;
 }
 
+
+select {
+    width: 100%;
+    height: 40px;
+    padding: 10px 2px;
+    margin-bottom: 15px;
+}
+
+del, 
+strike,
+s {
+    text-decoration: line-through;
+}
+
 b,
 strong {
 	font-weight: bolder;
+}
+
+u {
+    text-decoration: underline;
 }
 
 code,
@@ -217,7 +235,8 @@ p {
 dfn,
 cite,
 em,
-i {
+i,
+var {
 	font-style: italic;
 }
 
@@ -521,6 +540,7 @@ img {
 /* Font */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+    margin-bottom: 15px;
 }
 .fw-300 {
     font-weight: 300;
@@ -1873,10 +1893,6 @@ p.price del {
 }
 
 .blog-single-content .post-thumbnail img {
-    /* width: 100%;
-    max-height: 489px;
-    object-fit: cover;
-    object-position: center top; */
     border-radius: 6px;
 }
 .blog-single-content .entry-header {
@@ -1887,6 +1903,70 @@ p.price del {
     text-align: left;
     margin-top: 16px;
 }
+article .entry-content table thead th {
+    background: #E1E1E1;
+    border-right: 1px solid #E5E8EC;
+    padding: 8px 0;
+}
+
+article .entry-content table thead th:last-child {
+    border-right: none;
+}
+
+article .entry-content table tbody th {
+    background: #E1E1E1;
+    color: #3B4DF0;
+    font-size: 16px;
+    border-right: 1px solid #E5E8EC;
+    padding: 8px 0;
+}
+
+.entry-content a {
+    color: #3B4DF0;
+    font-weight: 500;
+}
+
+code {
+    background: oldlace;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.entry-content .wp-block-button a.wp-block-button__link {
+    background: #3B4DF0;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.entry-content .wp-block-button a.wp-block-button__link:hover {
+    background: #000;
+}
+
+.entry-content .wp-block-group.has-background {
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.entry-content .has-large-font-size {
+    line-height: 40px;
+}
+
+.entry-content .wp-block-media-text.has-media-on-the-right {
+    margin-bottom: 15px;
+}
+.wp-block-archives li a {
+    color: #475467;
+}
+
+.wp-block-archives li a:hover {
+    color: #3B4DF0;
+}
+
+.wp-block-archives li {
+    line-height: 28px;
+}
+
+
 
 /* Recent post CSS */
 .post-grid-content h3, .recent-post-grid-content h4, .blog-post-content .entry-header .entry-title, .product-card-title {
@@ -1922,6 +2002,7 @@ p.price del {
     padding-bottom: 0;
     border-bottom: none;
 }
+
 
 
 
@@ -2001,12 +2082,12 @@ p.price del {
     border-right: none;
 }
 
-#secondary.widget-area nav.wp-calendar-nav {
+.wp-calendar-nav {
     background: #3B4DF0;
     border-radius: 3px;
 }
 
-#secondary.widget-area nav.wp-calendar-nav a {
+nav.wp-calendar-nav a {
     color: #fff !important;
     font-size: 18px;
     line-height: 30px;
@@ -2014,7 +2095,7 @@ p.price del {
     display: inline-block;
 }
 
-#secondary.widget-area nav.wp-calendar-nav:hover {
+nav.wp-calendar-nav:hover {
     background: #1D2939;
 }
 

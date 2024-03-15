@@ -30,7 +30,7 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content fz-16 fw-400 lh-20 clr-black">
+	<div class="entry-content fz-16 fw-400 clr-black">
 		<?php
 		if ( is_single() ) :
 			the_content(

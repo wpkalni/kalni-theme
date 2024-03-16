@@ -14,43 +14,18 @@ get_header();
 
 		<div class="container-85">
 			<section class="error-404 not-found">
-				<header class="page-header error-page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'kalni' ); ?></h1>
+				<header class="page-header grid error-page-header bg-white">
+					<!-- <h1 class="page-title"><?php //esc_html_e( 'Oops! That page can&rsquo;t be found.', 'kalni' ); ?></h1> -->
+					<img src="/wp-content/uploads/2024/03/404.png" alt="404">
+					<p class="fz-20 fw-700 lh-24 clr-black-dark"><?php esc_html_e( 'The page you are looking for it’s not here...', 'kalni' ); ?></p>
+
+					<a href="/" class="button fz-14 fw-700 tt-capitalize lh-42 clr-white bg-blue br-3"><?php esc_html_e( 'Back to home', 'kalni' ); ?></a>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'kalni' ); ?></p>
+					
 
-						<?php
-						get_search_form();
-
-						the_widget( 'WP_Widget_Recent_Posts' );
-						?>
-
-						<div class="widget widget_categories">
-							<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'kalni' ); ?></h2>
-							<ul>
-								<?php
-								wp_list_categories(
-									array(
-										'orderby'    => 'count',
-										'order'      => 'DESC',
-										'show_count' => 1,
-										'title_li'   => '',
-										'number'     => 10,
-									)
-								);
-								?>
-							</ul>
-						</div><!-- .widget -->
-
-						<?php
-						/* translators: %1$s: smiley */
-						$kalni_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'kalni' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$kalni_archive_content" );
-
-						the_widget( 'WP_Widget_Tag_Cloud' );
-						?>
+				<?php echo do_shortcode( '[product_card_slider count="4"]' ); ?>
 
 				</div><!-- .page-content -->
 			</section><!-- .error-404 -->

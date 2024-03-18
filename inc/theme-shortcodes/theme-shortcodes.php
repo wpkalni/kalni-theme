@@ -59,6 +59,11 @@ if ( class_exists( 'WooCommerce' ) ) {
                     <div class="product-thumb-wrap relative">
                         '.get_the_post_thumbnail($post_id, 'br-4').'';
 
+                        $html .= '
+                        <div class="product-wishlist">
+                        '.do_shortcode( '[ti_wishlists_addtowishlist product_id="'.esc_attr( get_the_ID() ).'" variation_id="'.esc_attr( get_the_ID() ).'"]' ).'
+                        </div>
+                        ';
                         if ( $product->get_featured() ) :
                             $featured = esc_html( 'Featured' );
                             $html .= '<div class="featured-base bg-green clr-white justify-center align-center flex absolute top-0 left-0 fz-12 fw-500">'.$featured.'</div>';

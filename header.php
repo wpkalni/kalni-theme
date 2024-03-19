@@ -127,8 +127,34 @@ endif;
 											<path d="M17.5097 26.7901H6.48972C4.58972 26.7901 2.88972 26.0101 1.11972 24.3301C0.279717 23.5301 -0.100284 22.6601 0.0197165 21.7601C0.259716 19.8401 2.65972 18.4901 4.24972 17.5901C4.46972 17.4701 4.66972 17.3501 4.83972 17.2501C9.18972 14.6601 14.8097 14.6601 19.1597 17.2501C19.3297 17.3501 19.5297 17.4701 19.7497 17.5901C21.3397 18.4901 23.7397 19.8501 23.9797 21.7601C24.0897 22.6601 23.7197 23.5201 22.8797 24.3301C21.1097 26.0101 19.4097 26.7901 17.5097 26.7901ZM5.60972 18.5401C5.42972 18.6501 5.21972 18.7701 4.98972 18.8901C3.73972 19.6001 1.64972 20.7801 1.50972 21.9401C1.48972 22.0901 1.42972 22.5501 2.15972 23.2401C3.64972 24.6601 4.97972 25.2901 6.48972 25.2901H17.5097C19.0197 25.2901 20.3497 24.6601 21.8397 23.2401C22.5697 22.5501 22.5097 22.0901 22.4897 21.9401C22.3497 20.7701 20.2597 19.5901 19.0097 18.8901C18.7797 18.7601 18.5697 18.6401 18.3897 18.5401C14.5097 16.2301 9.48972 16.2301 5.60972 18.5401Z" fill="<?php echo $account_clr; ?>"/>
 											<path d="M11.9989 13.04C8.47891 13.04 5.62891 10.18 5.62891 6.66004C5.62891 3.14004 8.48891 0.290039 11.9989 0.290039C15.5189 0.290039 18.3789 3.15004 18.3789 6.67004C18.3789 10.19 15.5189 13.04 11.9989 13.04ZM11.9989 1.79004C9.30891 1.79004 7.12891 3.98004 7.12891 6.67004C7.12891 9.36004 9.31891 11.55 11.9989 11.55C14.6889 11.55 16.8789 9.36004 16.8789 6.67004C16.8789 3.98004 14.6889 1.79004 11.9989 1.79004Z" fill="<?php echo $account_clr; ?>"/>
 										</svg>
-										<a href="#" class="user-link clr-black fz-12 fw-500 lh-16">
+										<a href="#modal-form" class="user-link clr-black fz-12 fw-500 lh-16">
 											<span class="clr-black-light">Login</span><br>Account
+											<div class="modal-form" id="modal-form">
+												<div class="page-content modal-content">
+													<a href="#" class="modal-close" title="Close Modal">X</a>
+													<img src="/wp-content/uploads/2024/03/logo.png" width="100" alt="">
+													<div class="tabbed">
+														<input type="radio" id="tab21" name="css-tabs2" checked>
+														<input type="radio" id="tab22" name="css-tabs2">
+														
+														<ul class="tabs">
+															<li class="tab"><label for="tab21">Login</label></li>
+															<li class="tab"><label for="tab22">Register</label></li>
+														</ul>
+														
+														<div class="tab-content">
+															<h4>Enter your username and password to login.</h4>
+															<p><?php echo do_shortcode( '[kalni_wc_login_form]' ); ?></p>
+														</div>
+														
+														<div class="tab-content">
+															<h4>Enter your email and password to register.</h4>
+															<p><?php echo do_shortcode( '[kalni_wc_reg_form]' ); ?></p>
+														</div>
+													</div>
+													<p>or Connect with</p>
+												</div>
+											</div>
 										</a>
 									</div>
 								<?php endif; if(! $theme_settings['hide_header_wish'] ) : ?>
@@ -151,14 +177,6 @@ endif;
 									</div>
 								<?php endif; if(! $theme_settings['hide_header_cart'] ) : ?>
 									<div class="shoping-cart flex align-center f-gap-10">
-										<!-- <div class="hm-cart relative">
-											<img src="/wp-content/uploads/2024/03/shopping-cart.png" alt="" width="30">
-											<span class="cart-count absolute bg-red clr-white br-100 text-center">0</span>
-										</div>
-										<div class="cart-content clr-black fz-12 fw-500 lh-16">
-											<span class="clr-black-light">Your Cart</span> <br> $0.00
-										</div> -->
-
 										<?php 
 											if ( class_exists( 'WooCommerce' )) :
 												echo do_shortcode('[kalni_mini_cart]');

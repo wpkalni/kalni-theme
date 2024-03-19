@@ -67,6 +67,15 @@
 			  ]
 		});
 
+
+		// minicart js
+		$(".kalni-minicart-dropdown").click(function() {
+			$(".kalni-minicart-dropdown-menu").addClass("active-cart");
+		});
+		$(".close-cart").click(function() {
+			$(".kalni-minicart-dropdown-menu").removeClass("active-cart");
+		});
+
     });
 
 }(jQuery));	

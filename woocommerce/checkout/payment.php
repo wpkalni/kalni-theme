@@ -22,6 +22,7 @@ if ( ! wp_doing_ajax() ) {
 }
 ?>
 <div id="payment" class="woocommerce-checkout-payment">
+	<h3 class="fz-20 lh-30 fw-700 clr-black-dark"><?php esc_html_e( 'Payment Method', 'woocommerce' ); ?></h3>
 	<?php if ( WC()->cart->needs_payment() ) : ?>
 		<ul class="wc_payment_methods payment_methods methods">
 			<?php

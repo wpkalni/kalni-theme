@@ -43,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php wc_get_template( 'checkout/order-received.php', array( 'order' => $order ) ); ?>
 
-			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details list-unstyled grid grid-5 align-center">
 
 				<li class="woocommerce-order-overview__order order">
 					<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>

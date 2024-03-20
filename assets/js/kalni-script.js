@@ -76,6 +76,22 @@
 			$(".kalni-minicart-dropdown-menu").removeClass("active-cart");
 		});
 
+		// all categories menu js
+		$(".all-categories").click(function() {
+			$(".cat-menus").addClass("cat-menus-active");
+		});
+		$(".close-cat-menus").click(function() {
+			$(".cat-menus").removeClass("cat-menus-active");
+		});
+
+		// responsive menu js
+		$(".responsive-menu svg").click(function() {
+			$(".main-navigation").addClass("menus-active");
+		});
+		$(".responsive-menu-close").click(function() {
+			$(".main-navigation").removeClass("menus-active");
+		});
+
     });
 
 }(jQuery));	

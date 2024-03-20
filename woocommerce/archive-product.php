@@ -33,6 +33,7 @@ if ( is_active_sidebar( 'woocommerce' ) ) :
 else :
 	$grid_count = esc_attr( ' grid-1' );
 endif;
+
 ?>
 
 	<div class="woo-main-grid grid<?php echo $grid_count ?> g-gap-32">

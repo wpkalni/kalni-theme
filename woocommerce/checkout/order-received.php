@@ -19,8 +19,8 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-
-<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
+<h1 class="clr-black-dark fz-64 fw-700 lh-76 text-center"><span class="clr-blue">Thank You</span> For Purchasing</h1>
+<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received fz-20 fw-700 lh-24 clr-black-dark br-3 bg-white-grey">
 	<?php
 	/**
 	 * Filter the message shown after a checkout is complete.

@@ -50,7 +50,7 @@
 								<?php dynamic_sidebar( 'footer-3' ); ?>
 							</div>
 						<?php endif; ?>
-						<div class="widget-4">
+						<div class="widget-4 footer-flex">
 							<h3 class="fw-600 fz-24 clr-black">Talk To Us</h3>
 							<p class="fw-500 fz-16 lh-16">Got Questions? Call us</p>
 						</div>

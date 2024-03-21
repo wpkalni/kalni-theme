@@ -73,7 +73,7 @@ if ( post_password_required() ) {
 
 			// echo $product_attributes;
 			// echo wc_display_product_attributes( $product );
-			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400"><b class="fw-600">Brand: </b>' .$attribute. '';
+			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400 text-left">' .$attribute. '';
 
 			woocommerce_template_single_sharing();
 			?>

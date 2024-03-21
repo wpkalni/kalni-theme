@@ -92,6 +92,15 @@
 			$(".main-navigation").removeClass("menus-active");
 		});
 
+
+		$(".hm-search-form input#keyword").keyup(function() {
+			if ($(this).val().length > 2) {
+			  $("#datafetch").show();
+			} else {
+			  $("#datafetch").hide();
+			}
+		});
+
     });
 
 }(jQuery));	

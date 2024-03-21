@@ -58,7 +58,7 @@ endif;
 		<?php if(! $theme_settings['hide_header_top'] ) : ?>
 		<div class="header-top bg-blue">
 			<div class="container-95">
-				<div class="grid grid-4 align-center g-gap-20">
+				<div class="grid grid-4 align-center g-gap-20 g-justify-center">
 					<?php if(!empty($theme_settings['header_top_content1']) ) : ?>
 						<div class="ht-grid-content align-center clr-white flex f-gap-5 fz-14 fw-400 lh-18">
 							<i class="fa-solid fa-bolt"></i>
@@ -86,39 +86,77 @@ endif;
 		<?php endif; ?>
 		<div class="header-middle bg-white">
 			<div class="container-85">
-				<div class="middle-desktop grid grid-1-5 g-gap-60 align-center">
+				<div class="middle-desktop grid grid-1-5 g-gap-60 align-center g-justify-end">
 					<div class="site-branding">
 						<?php
-							$custom_logo_id = the_custom_logo( 'custom_logo' );
-							if ( !empty($custom_logo_id) ) : 
-								the_custom_logo(); 
-							else :
-							?>
-								<p class="site-title">
-									<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-										<?php bloginfo( 'name' ); ?>
-									</a>
-								</p>
-							<?php
-							endif; 
+						$custom_logo_id = the_custom_logo( 'custom_logo' );
+						if ( !empty($custom_logo_id) ) : 
+							the_custom_logo(); 
+						else :
+						?>
+							<p class="site-title">
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+									<?php bloginfo( 'name' ); ?>
+								</a>
+							</p>
+						<?php
+						endif; 
 						?>
 					</div><!-- .site-branding -->
 					<div class="hm-right-content">
-						<div class="grid grid-2-1 align-center g-gap-10">
+						<div class="grid grid-2-1 align-center g-gap-10 g-justify-end">
 							<?php if(! $theme_settings['hide_header_search'] ) : ?>
-								<div class="header-search">
-									<form action="/" class="hm-search-form flex align-center bg-white relative br-4">
-										<select name="allcats" id="allcats" class="select-cats fz-14 fw-500 lh-18 relative">
-											<option value="">All categories</option>
-											<option value="T-shirt">T-shirt</option>
-											<option value="T-shirt">T-shirt</option>
-											<option value="T-shirt">T-shirt</option>
-											<option value="T-shirt">T-shirt</option>
-										</select>
-										<input type="search" name="s" id="s" class="fz-14 lh-18 clr-black-light" placeholder="Search for products...">
-										<input type="submit" class="bg-blue clr-white fz-14 fw-500 lh-18 text-center absolute" value="Search">
-									</form>
-								</div>
+								<?php if ( wp_is_mobile() ) : ?>
+									<div class="search_bar">
+										<form class="hm-search-form flex align-center bg-white relative br-4" action="/" method="get" autocomplete="off" id="product_search">
+											<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="mukto_fetch()">
+												<option value=""><?php esc_html_e( 'All Categories', 'kalni' ); ?></option>
+												<?php
+													$terms = get_terms( array(
+														'taxonomy'   => 'product_cat', 
+														'hide_empty' => true, 
+													));
+													foreach( $terms as $term ) {
+														echo '<option value="'. $term->term_id.'"> '. $term->name .' </option>';
+													}
+												?>
+											</select>
+											<input type="text" name="s" placeholder="Search" id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="mukto_fetch()"><i class="fa-solid fa-magnifying-glass absolute right-0"></i>
+										</form>
+										<div class="search_result" id="datafetch">
+											<ul>
+												<li><?php esc_html_e( 'Please wait..', 'kalni' ); ?></li>
+											</ul>
+										</div>
+									</div>
+								<?php endif; if ( !wp_is_mobile() ) : ?>
+									<div class="header-search">
+										<div class="search_bar">
+											<form class="hm-search-form flex align-center bg-white relative br-4" action="/" method="get" autocomplete="off" id="product_search">
+												<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="mukto_fetch()">
+													<option value=""><?php esc_html_e( 'All Categories', 'kalni' ); ?></option>
+													<?php
+														$terms = get_terms( array(
+															'taxonomy'   => 'product_cat', 
+															'hide_empty' => true, 
+														));
+														foreach( $terms as $term ) {
+															echo '<option value="'. $term->term_id.'"> '. $term->name .' </option>';
+														}
+														?>
+												</select>
+												<input type="text" name="s" placeholder="Search for products..." id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="mukto_fetch()">
+												<input type="submit" class="bg-blue clr-white fz-14 fw-500 lh-18 text-center absolute" value="Search" disabled>
+												
+											</form>
+											<div class="search_result" id="datafetch">
+												<ul class="list-unstyled">
+													<li><?php esc_html_e( 'Please wait..', 'kalni' ); ?></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								<?php endif; ?>
 							<?php endif; ?>
 							<?php if ( wp_is_mobile() ) : ?>
 								<div class="responsive-menu cursor-pointer">
@@ -127,7 +165,7 @@ endif;
 									</svg>
 
 									<nav id="site-navigation" class="main-navigation">
-										<div class="responsive-menu-close">X</div>
+										<div class="responsive-menu-close"><?php esc_html_e( 'X', 'kalni' ); ?></div>
 										<?php
 										wp_nav_menu(
 											array(
@@ -147,8 +185,16 @@ endif;
 												<path d="M17.5097 26.7901H6.48972C4.58972 26.7901 2.88972 26.0101 1.11972 24.3301C0.279717 23.5301 -0.100284 22.6601 0.0197165 21.7601C0.259716 19.8401 2.65972 18.4901 4.24972 17.5901C4.46972 17.4701 4.66972 17.3501 4.83972 17.2501C9.18972 14.6601 14.8097 14.6601 19.1597 17.2501C19.3297 17.3501 19.5297 17.4701 19.7497 17.5901C21.3397 18.4901 23.7397 19.8501 23.9797 21.7601C24.0897 22.6601 23.7197 23.5201 22.8797 24.3301C21.1097 26.0101 19.4097 26.7901 17.5097 26.7901ZM5.60972 18.5401C5.42972 18.6501 5.21972 18.7701 4.98972 18.8901C3.73972 19.6001 1.64972 20.7801 1.50972 21.9401C1.48972 22.0901 1.42972 22.5501 2.15972 23.2401C3.64972 24.6601 4.97972 25.2901 6.48972 25.2901H17.5097C19.0197 25.2901 20.3497 24.6601 21.8397 23.2401C22.5697 22.5501 22.5097 22.0901 22.4897 21.9401C22.3497 20.7701 20.2597 19.5901 19.0097 18.8901C18.7797 18.7601 18.5697 18.6401 18.3897 18.5401C14.5097 16.2301 9.48972 16.2301 5.60972 18.5401Z" fill="<?php echo $account_clr; ?>"/>
 												<path d="M11.9989 13.04C8.47891 13.04 5.62891 10.18 5.62891 6.66004C5.62891 3.14004 8.48891 0.290039 11.9989 0.290039C15.5189 0.290039 18.3789 3.15004 18.3789 6.67004C18.3789 10.19 15.5189 13.04 11.9989 13.04ZM11.9989 1.79004C9.30891 1.79004 7.12891 3.98004 7.12891 6.67004C7.12891 9.36004 9.31891 11.55 11.9989 11.55C14.6889 11.55 16.8789 9.36004 16.8789 6.67004C16.8789 3.98004 14.6889 1.79004 11.9989 1.79004Z" fill="<?php echo $account_clr; ?>"/>
 											</svg>
+											<?php 
+											if ( is_user_logged_in() ) :
+												$current_user = wp_get_current_user();
+												if ( ($current_user instanceof WP_User) ) :
+													echo esc_html( $current_user->display_name );
+												endif; 
+											else :
+											?>
 											<a href="#modal-form" class="user-link clr-black fz-12 fw-500 lh-16">
-												<span class="clr-black-light">Login</span><br>Account
+												<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 												<div class="modal-form" id="modal-form">
 													<div class="page-content modal-content">
 														<a href="#" class="modal-close" title="Close Modal">X</a>
@@ -158,24 +204,25 @@ endif;
 															<input type="radio" id="tab22" name="css-tabs2">
 															
 															<ul class="tabs">
-																<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab21">Login</label></li>
-																<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab22">Register</label></li>
+																<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab21"><?php esc_html_e( 'Login', 'kalni' ); ?></label></li>
+																<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab22"><?php esc_html_e( 'Register', 'kalni' ); ?></label></li>
 															</ul>
 															
 															<div class="tab-content">
-																<h4 class="fz-15 lh-18 fw-400">Enter your username and password to login.</h4>
+																<h4 class="fz-15 lh-18 fw-400"><?php esc_html_e( 'Enter your username and password to login.', 'kalni' ); ?></h4>
 																<p><?php echo do_shortcode( '[kalni_wc_login_form]' ); ?></p>
 															</div>
 															
 															<div class="tab-content">
-																<h4 class="fz-15 lh-18 fw-400">Enter your email and password to register.</h4>
+																<h4 class="fz-15 lh-18 fw-400"><?php esc_html_e( 'Enter your email and password to register.', 'kalni' ); ?></h4>
 																<p><?php echo do_shortcode( '[kalni_wc_reg_form]' ); ?></p>
 															</div>
 														</div>
-														<p>or Connect with</p>
+														<p><?php esc_html_e( 'or Connect with', 'kalni' ); ?></p>
 													</div>
 												</div>
 											</a>
+											<?php endif; ?>
 										</div>
 									<?php endif; if(! $theme_settings['hide_header_wish'] ) : ?>
 										<div class="hm-heart relative">
@@ -193,14 +240,13 @@ endif;
 												<path d="M2.73 18.9981H0.75C0.34 18.9981 0 18.6581 0 18.2481C0 17.8381 0.34 17.4981 0.75 17.4981H2.73C5 17.4981 6.14 17.4981 6.98 17.0081C7.7 16.5881 8.26 15.8081 9.31 14.1081C9.53 13.7581 9.99 13.6481 10.34 13.8681C10.69 14.0881 10.8 14.5481 10.59 14.8981C9.54 16.5981 8.81999 17.6781 7.73999 18.3081C6.54999 18.9981 5.27 18.9981 2.73 18.9981ZM14.55 7.74808C14.42 7.74808 14.28 7.70808 14.16 7.63808C13.81 7.41808 13.7 6.95808 13.92 6.60808C14.97 4.90808 15.69 3.82808 16.77 3.19808C18.14 2.39808 19.77 2.44808 21.2 2.48808C21.49 2.48808 21.77 2.49808 22.04 2.49808C22.03 2.48808 22.03 2.47808 22.02 2.47808L20.9 1.25808C20.62 0.958082 20.64 0.478082 20.94 0.198082C21.25 -0.0819184 21.72 -0.0619185 22 0.238082L23.12 1.45808C23.74 2.12808 24.18 2.61808 23.93 3.27808C23.66 3.99808 22.93 3.99808 22.08 3.99808C21.78 3.99808 21.47 3.98808 21.15 3.97808C19.85 3.93808 18.52 3.89808 17.51 4.48808C16.79 4.90808 16.23 5.68808 15.18 7.38808C15.05 7.61808 14.8 7.74808 14.55 7.74808Z" fill="<?php echo $shuffle_clr; ?>"/>
 												<path d="M21.4498 21.498C21.2698 21.498 21.0898 21.428 20.9398 21.298C20.6398 21.018 20.6198 20.548 20.8998 20.238L22.0198 19.018C22.0298 19.008 22.0298 18.998 22.0398 18.998C21.7698 18.998 21.4898 19.008 21.1998 19.018C19.7598 19.058 18.1398 19.108 16.7698 18.308C15.5898 17.618 14.8898 16.478 13.4898 14.198L9.74977 8.09805C8.47977 6.02805 7.83976 4.98805 6.98976 4.49805C6.14976 4.00805 5.00976 4.00805 2.73976 4.00805H0.759766C0.349766 4.00805 0.00976562 3.66805 0.00976562 3.25805C0.00976562 2.84805 0.339771 2.49805 0.749771 2.49805H2.72977C5.26977 2.49805 6.54976 2.49805 7.73976 3.18805C8.91976 3.87805 9.61976 5.01805 11.0198 7.29805L14.7598 13.398C16.0298 15.468 16.6698 16.508 17.5198 17.008C18.5198 17.588 19.8598 17.548 21.1598 17.518C21.4798 17.508 21.7898 17.498 22.0898 17.498C22.9398 17.498 23.6698 17.498 23.9398 18.218C24.1898 18.878 23.7498 19.368 23.1298 20.038L22.0098 21.258C21.8498 21.418 21.6498 21.498 21.4498 21.498Z" fill="<?php echo $shuffle_clr; ?>"/>
 											</svg>
-											<span class="shuffle-count absolute bg-red clr-white br-100 text-center">0</span>
+											<span class="shuffle-count absolute bg-red clr-white br-100 text-center"><?php esc_html_e( '0', 'kalni' ); ?></span>
 										</div>
 									<?php endif; if(! $theme_settings['hide_header_cart'] ) : ?>
 										<div class="shoping-cart flex align-center f-gap-10">
 											<?php 
 												if ( class_exists( 'WooCommerce' )) :
 													echo do_shortcode('[kalni_mini_cart]');
-													// echo kalni_woocommerce_header_cart();
 												endif;
 											?>
 										</div>
@@ -219,8 +265,16 @@ endif;
 										<path d="M17.5097 26.7901H6.48972C4.58972 26.7901 2.88972 26.0101 1.11972 24.3301C0.279717 23.5301 -0.100284 22.6601 0.0197165 21.7601C0.259716 19.8401 2.65972 18.4901 4.24972 17.5901C4.46972 17.4701 4.66972 17.3501 4.83972 17.2501C9.18972 14.6601 14.8097 14.6601 19.1597 17.2501C19.3297 17.3501 19.5297 17.4701 19.7497 17.5901C21.3397 18.4901 23.7397 19.8501 23.9797 21.7601C24.0897 22.6601 23.7197 23.5201 22.8797 24.3301C21.1097 26.0101 19.4097 26.7901 17.5097 26.7901ZM5.60972 18.5401C5.42972 18.6501 5.21972 18.7701 4.98972 18.8901C3.73972 19.6001 1.64972 20.7801 1.50972 21.9401C1.48972 22.0901 1.42972 22.5501 2.15972 23.2401C3.64972 24.6601 4.97972 25.2901 6.48972 25.2901H17.5097C19.0197 25.2901 20.3497 24.6601 21.8397 23.2401C22.5697 22.5501 22.5097 22.0901 22.4897 21.9401C22.3497 20.7701 20.2597 19.5901 19.0097 18.8901C18.7797 18.7601 18.5697 18.6401 18.3897 18.5401C14.5097 16.2301 9.48972 16.2301 5.60972 18.5401Z" fill="<?php echo $account_clr; ?>"/>
 										<path d="M11.9989 13.04C8.47891 13.04 5.62891 10.18 5.62891 6.66004C5.62891 3.14004 8.48891 0.290039 11.9989 0.290039C15.5189 0.290039 18.3789 3.15004 18.3789 6.67004C18.3789 10.19 15.5189 13.04 11.9989 13.04ZM11.9989 1.79004C9.30891 1.79004 7.12891 3.98004 7.12891 6.67004C7.12891 9.36004 9.31891 11.55 11.9989 11.55C14.6889 11.55 16.8789 9.36004 16.8789 6.67004C16.8789 3.98004 14.6889 1.79004 11.9989 1.79004Z" fill="<?php echo $account_clr; ?>"/>
 									</svg>
+									<?php 
+									if ( is_user_logged_in() ) :
+										$current_user = wp_get_current_user();
+										if ( ($current_user instanceof WP_User) ) :
+											echo esc_html( $current_user->display_name );
+										endif; 
+									else :
+									?>
 									<a href="#modal-form" class="user-link clr-black fz-12 fw-500 lh-16">
-										<span class="clr-black-light">Login</span><br>Account
+										<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 										<div class="modal-form" id="modal-form">
 											<div class="page-content modal-content">
 												<a href="#" class="modal-close" title="Close Modal">X</a>
@@ -230,24 +284,25 @@ endif;
 													<input type="radio" id="tab22" name="css-tabs2">
 													
 													<ul class="tabs">
-														<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab21">Login</label></li>
-														<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab22">Register</label></li>
+														<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab21"><?php esc_html_e( 'Login', 'kalni' ); ?></label></li>
+														<li class="tab"><label class="fz-24 lh-28 fw-700 clr-black" for="tab22"><?php esc_html_e( 'Register', 'kalni' ); ?></label></li>
 													</ul>
 													
 													<div class="tab-content">
-														<h4 class="fz-15 lh-18 fw-400">Enter your username and password to login.</h4>
+														<h4 class="fz-15 lh-18 fw-400"><?php esc_html_e( 'Enter your username and password to login.', 'kalni' ); ?></h4>
 														<p><?php echo do_shortcode( '[kalni_wc_login_form]' ); ?></p>
 													</div>
 													
 													<div class="tab-content">
-														<h4 class="fz-15 lh-18 fw-400">Enter your email and password to register.</h4>
+														<h4 class="fz-15 lh-18 fw-400"><?php esc_html_e( 'Enter your email and password to register.', 'kalni' ); ?></h4>
 														<p><?php echo do_shortcode( '[kalni_wc_reg_form]' ); ?></p>
 													</div>
 												</div>
-												<p>or Connect with</p>
+												<p><?php esc_html_e( 'or Connect with', 'kalni' ); ?></p>
 											</div>
 										</div>
 									</a>
+									<?php endif; ?>
 								</div>
 							<?php endif; if(! $theme_settings['hide_header_wish'] ) : ?>
 								<div class="hm-heart relative">
@@ -265,14 +320,13 @@ endif;
 										<path d="M2.73 18.9981H0.75C0.34 18.9981 0 18.6581 0 18.2481C0 17.8381 0.34 17.4981 0.75 17.4981H2.73C5 17.4981 6.14 17.4981 6.98 17.0081C7.7 16.5881 8.26 15.8081 9.31 14.1081C9.53 13.7581 9.99 13.6481 10.34 13.8681C10.69 14.0881 10.8 14.5481 10.59 14.8981C9.54 16.5981 8.81999 17.6781 7.73999 18.3081C6.54999 18.9981 5.27 18.9981 2.73 18.9981ZM14.55 7.74808C14.42 7.74808 14.28 7.70808 14.16 7.63808C13.81 7.41808 13.7 6.95808 13.92 6.60808C14.97 4.90808 15.69 3.82808 16.77 3.19808C18.14 2.39808 19.77 2.44808 21.2 2.48808C21.49 2.48808 21.77 2.49808 22.04 2.49808C22.03 2.48808 22.03 2.47808 22.02 2.47808L20.9 1.25808C20.62 0.958082 20.64 0.478082 20.94 0.198082C21.25 -0.0819184 21.72 -0.0619185 22 0.238082L23.12 1.45808C23.74 2.12808 24.18 2.61808 23.93 3.27808C23.66 3.99808 22.93 3.99808 22.08 3.99808C21.78 3.99808 21.47 3.98808 21.15 3.97808C19.85 3.93808 18.52 3.89808 17.51 4.48808C16.79 4.90808 16.23 5.68808 15.18 7.38808C15.05 7.61808 14.8 7.74808 14.55 7.74808Z" fill="<?php echo $shuffle_clr; ?>"/>
 										<path d="M21.4498 21.498C21.2698 21.498 21.0898 21.428 20.9398 21.298C20.6398 21.018 20.6198 20.548 20.8998 20.238L22.0198 19.018C22.0298 19.008 22.0298 18.998 22.0398 18.998C21.7698 18.998 21.4898 19.008 21.1998 19.018C19.7598 19.058 18.1398 19.108 16.7698 18.308C15.5898 17.618 14.8898 16.478 13.4898 14.198L9.74977 8.09805C8.47977 6.02805 7.83976 4.98805 6.98976 4.49805C6.14976 4.00805 5.00976 4.00805 2.73976 4.00805H0.759766C0.349766 4.00805 0.00976562 3.66805 0.00976562 3.25805C0.00976562 2.84805 0.339771 2.49805 0.749771 2.49805H2.72977C5.26977 2.49805 6.54976 2.49805 7.73976 3.18805C8.91976 3.87805 9.61976 5.01805 11.0198 7.29805L14.7598 13.398C16.0298 15.468 16.6698 16.508 17.5198 17.008C18.5198 17.588 19.8598 17.548 21.1598 17.518C21.4798 17.508 21.7898 17.498 22.0898 17.498C22.9398 17.498 23.6698 17.498 23.9398 18.218C24.1898 18.878 23.7498 19.368 23.1298 20.038L22.0098 21.258C21.8498 21.418 21.6498 21.498 21.4498 21.498Z" fill="<?php echo $shuffle_clr; ?>"/>
 									</svg>
-									<span class="shuffle-count absolute bg-red clr-white br-100 text-center">0</span>
+									<span class="shuffle-count absolute bg-red clr-white br-100 text-center"><?php esc_html_e( '0', 'kalni' ); ?></span>
 								</div>
 							<?php endif; if(! $theme_settings['hide_header_cart'] ) : ?>
 								<div class="shoping-cart flex align-center f-gap-10">
 									<?php 
 										if ( class_exists( 'WooCommerce' )) :
 											echo do_shortcode('[kalni_mini_cart]');
-											// echo kalni_woocommerce_header_cart();
 										endif;
 									?>
 								</div>
@@ -314,10 +368,14 @@ endif;
 						</nav><!-- #site-navigation -->
 						<?php if(! $theme_settings['hide_header_discount'] ) : ?>
 							<div class="hb-discount flex align-center f-gap-5 justify-end">
-								<img src="/wp-content/uploads/2024/03/badge-discount-alt.png" width="23" alt="Discount">
-								$20 Off Your First Order
+							<?php if( $theme_settings['dis_img'] ) : ?>
+								<img src="<?php echo esc_url($theme_settings['dis_img']); ?>" width="23" alt="Discount">
+							<?php endif; if( $theme_settings['dis_text'] ) : ?>
+								<?php echo esc_html($theme_settings['dis_text']); ?>
+							<?php else : ?>
+								<?php esc_html_e( '$20 Off Your First Order', 'kalni' ); ?>
 							</div>
-						<?php endif; ?>
+						<?php endif; endif; ?>
 					</div>
 				</div>
 			</div>

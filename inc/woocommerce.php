@@ -121,7 +121,10 @@ if ( ! function_exists( 'kalni_woocommerce_wrapper_before' ) ) {
 			<?php if (is_single()) :	?>
 				<div class="single-product-breadcrumb bg-white">
 					<div class="container-85">
-						<?php woocommerce_breadcrumb(); ?>
+						<div class="woo-breadcrumb-area flex justify-between aling-center">
+							<?php woocommerce_breadcrumb(); ?>
+							<?php echo kalni_prev_next_product(); ?>
+						</div>
 					</div>
 				</div>
 			<?php endif; ?>
@@ -363,16 +366,12 @@ function kalni_display_product_attributes(){
         if ( $attribute->is_taxonomy() ) {
 
             $terms = wp_get_post_terms( $product->get_id(), $name, 'all' );
-            // get the taxonomy
             $tax = $terms[0]->taxonomy;
-            // get the tax object
             $tax_object = get_taxonomy($tax);
-            // get tax label
             if ( isset ( $tax_object->labels->singular_name ) ) {
                 $tax_label = $tax_object->labels->singular_name;
             } elseif ( isset( $tax_object->label ) ) {
                 $tax_label = $tax_object->label;
-                // Trim label prefix since WC 3.0
                 if ( 0 === strpos( $tax_label, 'Product ' ) ) {
                    $tax_label = substr( $tax_label, 8 );
                 }                
@@ -384,7 +383,6 @@ function kalni_display_product_attributes(){
 
             foreach ( $terms as $term ) {
                 $single_term = esc_html( $term->name );
-                // Insert extra code here if you want to show terms as links.
                 array_push( $tax_terms, $single_term );
             }
 
@@ -432,4 +430,16 @@ function kalni_wc_login_form() {
    do_action( 'woocommerce_before_customer_login_form' );
    woocommerce_login_form( array( 'redirect' => wc_get_page_permalink( 'myaccount' ) ) );
    return ob_get_clean();
+}
+
+
+// add_action( 'woocommerce_before_single_product', 'kalni_prev_next_product' );
+// add_action( 'woocommerce_after_single_product', 'kalni_prev_next_product' );
+function kalni_prev_next_product(){
+echo '<div class="prev_next_buttons flex align-center f-gap-20">';
+	$previous = previous_post_link('%link', 'Previous', TRUE, ' ', 'product_cat');
+	$next = next_post_link('%link', 'Next', TRUE, ' ', 'product_cat');
+	echo $previous;
+	echo $next;
+	echo '</div>';        
 }

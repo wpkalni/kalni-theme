@@ -109,7 +109,7 @@ endif;
 								<?php if ( wp_is_mobile() ) : ?>
 									<div class="search_bar">
 										<form class="hm-search-form flex align-center bg-white relative br-4" action="/" method="get" autocomplete="off" id="product_search">
-											<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="mukto_fetch()">
+											<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="kalni_fetch()">
 												<option value=""><?php esc_html_e( 'All Categories', 'kalni' ); ?></option>
 												<?php
 													$terms = get_terms( array(
@@ -121,7 +121,7 @@ endif;
 													}
 												?>
 											</select>
-											<input type="text" name="s" placeholder="Search" id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="mukto_fetch()"><i class="fa-solid fa-magnifying-glass absolute right-0"></i>
+											<input type="text" name="s" placeholder="Search" id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="kalni_fetch()"><i class="fa-solid fa-magnifying-glass absolute right-0"></i>
 										</form>
 										<div class="search_result" id="datafetch">
 											<ul>
@@ -133,7 +133,7 @@ endif;
 									<div class="header-search">
 										<div class="search_bar">
 											<form class="hm-search-form flex align-center bg-white relative br-4" action="/" method="get" autocomplete="off" id="product_search">
-												<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="mukto_fetch()">
+												<select class="select-cats fz-14 fw-500 lh-18 relative" name="cat" id="cat" onchange="kalni_fetch()">
 													<option value=""><?php esc_html_e( 'All Categories', 'kalni' ); ?></option>
 													<?php
 														$terms = get_terms( array(
@@ -145,7 +145,7 @@ endif;
 														}
 														?>
 												</select>
-												<input type="text" name="s" placeholder="Search for products..." id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="mukto_fetch()">
+												<input type="text" name="s" placeholder="Search for products..." id="keyword" class="input_search fz-14 lh-18 clr-black-light" onkeyup="kalni_fetch()">
 												<input type="submit" class="bg-blue clr-white fz-14 fw-500 lh-18 text-center absolute" value="Search" disabled>
 												
 											</form>
@@ -236,10 +236,12 @@ endif;
 										</div>
 									<?php endif; if(! $theme_settings['hide_header_product_list'] ) : ?>
 										<div class="hm-shuffle relative">
-											<svg xmlns="http://www.w3.org/2000/svg" width="25" height="22" viewBox="0 0 25 22" fill="none">
-												<path d="M2.73 18.9981H0.75C0.34 18.9981 0 18.6581 0 18.2481C0 17.8381 0.34 17.4981 0.75 17.4981H2.73C5 17.4981 6.14 17.4981 6.98 17.0081C7.7 16.5881 8.26 15.8081 9.31 14.1081C9.53 13.7581 9.99 13.6481 10.34 13.8681C10.69 14.0881 10.8 14.5481 10.59 14.8981C9.54 16.5981 8.81999 17.6781 7.73999 18.3081C6.54999 18.9981 5.27 18.9981 2.73 18.9981ZM14.55 7.74808C14.42 7.74808 14.28 7.70808 14.16 7.63808C13.81 7.41808 13.7 6.95808 13.92 6.60808C14.97 4.90808 15.69 3.82808 16.77 3.19808C18.14 2.39808 19.77 2.44808 21.2 2.48808C21.49 2.48808 21.77 2.49808 22.04 2.49808C22.03 2.48808 22.03 2.47808 22.02 2.47808L20.9 1.25808C20.62 0.958082 20.64 0.478082 20.94 0.198082C21.25 -0.0819184 21.72 -0.0619185 22 0.238082L23.12 1.45808C23.74 2.12808 24.18 2.61808 23.93 3.27808C23.66 3.99808 22.93 3.99808 22.08 3.99808C21.78 3.99808 21.47 3.98808 21.15 3.97808C19.85 3.93808 18.52 3.89808 17.51 4.48808C16.79 4.90808 16.23 5.68808 15.18 7.38808C15.05 7.61808 14.8 7.74808 14.55 7.74808Z" fill="<?php echo $shuffle_clr; ?>"/>
-												<path d="M21.4498 21.498C21.2698 21.498 21.0898 21.428 20.9398 21.298C20.6398 21.018 20.6198 20.548 20.8998 20.238L22.0198 19.018C22.0298 19.008 22.0298 18.998 22.0398 18.998C21.7698 18.998 21.4898 19.008 21.1998 19.018C19.7598 19.058 18.1398 19.108 16.7698 18.308C15.5898 17.618 14.8898 16.478 13.4898 14.198L9.74977 8.09805C8.47977 6.02805 7.83976 4.98805 6.98976 4.49805C6.14976 4.00805 5.00976 4.00805 2.73976 4.00805H0.759766C0.349766 4.00805 0.00976562 3.66805 0.00976562 3.25805C0.00976562 2.84805 0.339771 2.49805 0.749771 2.49805H2.72977C5.26977 2.49805 6.54976 2.49805 7.73976 3.18805C8.91976 3.87805 9.61976 5.01805 11.0198 7.29805L14.7598 13.398C16.0298 15.468 16.6698 16.508 17.5198 17.008C18.5198 17.588 19.8598 17.548 21.1598 17.518C21.4798 17.508 21.7898 17.498 22.0898 17.498C22.9398 17.498 23.6698 17.498 23.9398 18.218C24.1898 18.878 23.7498 19.368 23.1298 20.038L22.0098 21.258C21.8498 21.418 21.6498 21.498 21.4498 21.498Z" fill="<?php echo $shuffle_clr; ?>"/>
-											</svg>
+											<a href="<?php echo esc_url( home_url( '/' ) ); ?>?action=yith-woocompare-add-product&amp;id=<?php echo esc_attr( get_the_ID() ); ?>" class="compare flex aling-center f-gap-20" data-product_id="<?php echo esc_attr( get_the_ID() ); ?>" rel="nofollow">
+												<svg xmlns="http://www.w3.org/2000/svg" width="25" height="22" viewBox="0 0 25 22" fill="none">
+													<path d="M2.73 18.9981H0.75C0.34 18.9981 0 18.6581 0 18.2481C0 17.8381 0.34 17.4981 0.75 17.4981H2.73C5 17.4981 6.14 17.4981 6.98 17.0081C7.7 16.5881 8.26 15.8081 9.31 14.1081C9.53 13.7581 9.99 13.6481 10.34 13.8681C10.69 14.0881 10.8 14.5481 10.59 14.8981C9.54 16.5981 8.81999 17.6781 7.73999 18.3081C6.54999 18.9981 5.27 18.9981 2.73 18.9981ZM14.55 7.74808C14.42 7.74808 14.28 7.70808 14.16 7.63808C13.81 7.41808 13.7 6.95808 13.92 6.60808C14.97 4.90808 15.69 3.82808 16.77 3.19808C18.14 2.39808 19.77 2.44808 21.2 2.48808C21.49 2.48808 21.77 2.49808 22.04 2.49808C22.03 2.48808 22.03 2.47808 22.02 2.47808L20.9 1.25808C20.62 0.958082 20.64 0.478082 20.94 0.198082C21.25 -0.0819184 21.72 -0.0619185 22 0.238082L23.12 1.45808C23.74 2.12808 24.18 2.61808 23.93 3.27808C23.66 3.99808 22.93 3.99808 22.08 3.99808C21.78 3.99808 21.47 3.98808 21.15 3.97808C19.85 3.93808 18.52 3.89808 17.51 4.48808C16.79 4.90808 16.23 5.68808 15.18 7.38808C15.05 7.61808 14.8 7.74808 14.55 7.74808Z" fill="<?php echo $shuffle_clr; ?>"/>
+													<path d="M21.4498 21.498C21.2698 21.498 21.0898 21.428 20.9398 21.298C20.6398 21.018 20.6198 20.548 20.8998 20.238L22.0198 19.018C22.0298 19.008 22.0298 18.998 22.0398 18.998C21.7698 18.998 21.4898 19.008 21.1998 19.018C19.7598 19.058 18.1398 19.108 16.7698 18.308C15.5898 17.618 14.8898 16.478 13.4898 14.198L9.74977 8.09805C8.47977 6.02805 7.83976 4.98805 6.98976 4.49805C6.14976 4.00805 5.00976 4.00805 2.73976 4.00805H0.759766C0.349766 4.00805 0.00976562 3.66805 0.00976562 3.25805C0.00976562 2.84805 0.339771 2.49805 0.749771 2.49805H2.72977C5.26977 2.49805 6.54976 2.49805 7.73976 3.18805C8.91976 3.87805 9.61976 5.01805 11.0198 7.29805L14.7598 13.398C16.0298 15.468 16.6698 16.508 17.5198 17.008C18.5198 17.588 19.8598 17.548 21.1598 17.518C21.4798 17.508 21.7898 17.498 22.0898 17.498C22.9398 17.498 23.6698 17.498 23.9398 18.218C24.1898 18.878 23.7498 19.368 23.1298 20.038L22.0098 21.258C21.8498 21.418 21.6498 21.498 21.4498 21.498Z" fill="<?php echo $shuffle_clr; ?>"/>
+												</svg>
+											</a>
 											<span class="shuffle-count absolute bg-red clr-white br-100 text-center"><?php esc_html_e( '0', 'kalni' ); ?></span>
 										</div>
 									<?php endif; if(! $theme_settings['hide_header_cart'] ) : ?>

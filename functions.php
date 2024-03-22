@@ -247,9 +247,9 @@ require get_template_directory() . '/inc/theme-shortcodes/theme-shortcodes.php';
 require get_template_directory() . '/inc/neumeric-pagination.php';
 
 /**
- * Product search form.
+ * Next prev post link
  */
-// require get_template_directory() . '/inc/product-search-form.php';
+require get_template_directory() . '/inc/next-prev-post.php';
 
 /**
  * Load Jetpack compatibility file.
@@ -271,15 +271,15 @@ if ( class_exists( 'WooCommerce' ) ) {
  ======================	 
  */
  // ajax fetch function
- add_action( 'wp_footer', 'ajax_fetch' );
- function ajax_fetch() { ?>
+ add_action( 'wp_footer', 'kalni_ajax_fetch' );
+ function kalni_ajax_fetch() { ?>
 	<script type="text/javascript">
-	function mukto_fetch(){
+	function kalni_fetch(){
 	
 		jQuery.ajax({
 			url: '<?php echo admin_url('admin-ajax.php'); ?>',
 			type: 'post',
-			data: { action: 'data_fetch', keyword: jQuery('#keyword').val(), pcat: jQuery('#cat').val() },
+			data: { action: 'kalni_data_fetch', keyword: jQuery('#keyword').val(), pcat: jQuery('#cat').val() },
 			success: function(data) {
 				jQuery('#datafetch').html( data );
 			}
@@ -291,9 +291,9 @@ if ( class_exists( 'WooCommerce' ) ) {
  }
  
  // the ajax function
- add_action('wp_ajax_data_fetch' , 'data_fetch');
- add_action('wp_ajax_nopriv_data_fetch','data_fetch');
- function data_fetch(){
+ add_action('wp_ajax_kalni_data_fetch' , 'kalni_data_fetch');
+ add_action('wp_ajax_nopriv_kalni_data_fetch','kalni_data_fetch');
+ function kalni_data_fetch(){
 	if ($_POST['pcat']) {
 		$product_cat_id = array(esc_attr( $_POST['pcat'] ));
 	}else {

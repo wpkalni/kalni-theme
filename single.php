@@ -19,7 +19,12 @@ if (have_posts()):
 		$mainGridItem = 'grid-1 ';
 	endif;
 	?>
-
+		<div class="container-85">
+			<div class="woo-breadcrumb-area flex justify-between aling-center">
+			<div class="wp-breadcrumb"><?php //echo get_breadcrumb(); ?></div>
+				<?php echo kalni_prev_next_post(); ?>
+			</div>
+		</div>
 		<main id="primary" class="site-main">
 			<div class="container-85">
 				<div class="kalni-blog-single grid <?php echo esc_attr($mainGridItem); ?>g-gap-50">

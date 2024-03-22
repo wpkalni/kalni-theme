@@ -8,8 +8,8 @@
 			dots: true,
 			loop: true,
 			arrows: false,
-			nextArrow: "<i class=\'fa fa-arrow-right\'></i>",
-			prevArrow: "<i class=\'fa fa-arrow-left\'></i>",
+			nextArrow: "<i class=\'fa fa-angle-right clr-black br-100 cursor-pointer lh-40 text-center absolute\'></i>",
+			prevArrow: "<i class=\'fa fa-angle-left clr-black br-100 cursor-pointer lh-40 text-center absolute\'></i>",
 			slidesToShow: 5,
 			infinite: true,
 			slidesToScroll: 1,
@@ -27,9 +27,10 @@
 				{
 				  breakpoint: 600,
 				  settings: {
-					slidesToShow: 1,
+					slidesToShow: 2,
 					slidesToScroll: 1,
-					arrows: false,
+					arrows: true,
+					dots: false
 				  }
 				}
 			  ]
@@ -59,9 +60,8 @@
 				{
 				  breakpoint: 600,
 				  settings: {
-					slidesToShow: 1,
+					slidesToShow: 2,
 					slidesToScroll: 1,
-					arrows: false,
 				  }
 				}
 			  ]
@@ -93,12 +93,21 @@
 		});
 
 
-		$(".hm-search-form input#keyword").keyup(function() {
+		$("input#keyword").keyup(function() {
 			if ($(this).val().length > 2) {
 			  $("#datafetch").show();
 			} else {
 			  $("#datafetch").hide();
 			}
+		});
+
+
+		$('body').on('added_to_cart',function(e,data) {
+			if ($('#hidden_cart').length == 0) { 
+				$(this).append('<a href="#TB_inline?width=300&height=550&inlineId=hidden_cart" id="show_hidden_cart" title="<h2>Cart</h2>" class="thickbox" style="display:none"></a>');
+				$(this).append('<div id="hidden_cart" style="display:none">'+data['div.widget_shopping_cart_content']+'</div>');
+			}
+			$('#show_hidden_cart').click();
 		});
 
     });

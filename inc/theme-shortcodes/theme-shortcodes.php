@@ -161,7 +161,7 @@ if (class_exists('WooCommerce')) {
                 'count' => '5',
             ), $atts));
 
-        $terms = get_terms('product_cat', array('hide_empty' => false, 'parent' => 0));
+        $terms = get_terms('product_cat', array('hide_empty' => true, 'parent' => 0));
 
         $html = '
         <div class="pc-slider kalni-product-cat-box">';

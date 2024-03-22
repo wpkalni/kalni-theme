@@ -1291,6 +1291,7 @@ h1, h2, h3, h4, h5, h6 {
 #datafetch a {
     color: #fff;
 }
+
 /* Header responsive  */
 @media (max-width: 767px) {
     .hm-search-form input.input_search {
@@ -1344,7 +1345,7 @@ h1, h2, h3, h4, h5, h6 {
         max-height: 100%;
         position: fixed;
         right: -300px;
-        z-index: 9;
+        z-index: 50;
         padding: 15px;
         top: 44px;
         transition: all 0.5s ease-in-out;
@@ -1566,6 +1567,28 @@ h1, h2, h3, h4, h5, h6 {
 .single-product-cat-box:hover .cat-box-content i {
     background: #3B4DF0;
     color: #fff;
+}
+
+@media (max-width: 767px) {
+    .single-product-cat-box {
+        padding: 10px;
+    }
+    .cat-box-content {
+        margin-top: 10px;
+    }
+    .cat-box-content div h5 {
+        margin-bottom: 10px;
+    }
+    .product-wrap-top {
+        padding: 10px 10px !important;
+        flex-direction: column;
+    }
+    .product-wrap-top .woocommerce-products-header {
+        text-align: center;
+    }
+    .woo-products-wrap .products .single-product-slide {
+        width: 160px;
+    }
 }
 
 
@@ -1814,15 +1837,7 @@ blockquote {
 
 
 /* Shop page */
-/* .wishlist.absolute i {
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    background: red;
-    color: #525A6A;
-    line-height: 40px;
-    cursor: pointer;
-} */
+
 .kalni-woo-sidebar {
     padding: 20px;
     background: #fff;
@@ -1831,6 +1846,7 @@ blockquote {
 .wishlist.absolute {
     top: -10px;
     z-index: 9;
+    right: 7px;
 }
 
 .wishlist a.tinvwl-icon-heart::before {
@@ -1948,8 +1964,17 @@ a.button.yith-wcqv-button:hover span.quickview-text,
     color: #fff !important;
 }
 
+.wishlist, .quickview, .compare-wrap {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all ease-in-out;
+}
 
-
+.single-product-slide:hover .wishlist, .single-product-slide:hover 
+ .quickview, .single-product-slide:hover .compare-wrap {
+    opacity: 1;
+    visibility: visible;
+}
 
 .product-wrap-top {
     padding: 20px 25px;
@@ -2038,6 +2063,89 @@ nav.woocommerce-pagination {
     
     .sale-price {
         font-size: 18px;
+    }
+
+    .woo-breadcrumb-area {
+        flex-direction: column;
+        justify-content: center !important;
+        text-align: center;
+    }
+    .prev_next_buttons {
+        padding-right: 0;
+        justify-content: center;
+        padding-bottom: 10px;
+    }
+    .kalni-woo-single-grid, .woocommerce-tabs.wc-tabs-wrapper {
+        padding: 10px !important;
+    }
+    .kalni-woo-single-grid {
+        grid-template-columns: 1fr;
+    }
+    .woocommerce-product-gallery__wrapper {
+        width: 300px !important;
+    }
+    .kalni-woo-single-grid form.cart {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .kalni-woo-single-grid form.cart .quantity {
+        margin-right: 0;
+        justify-content: left;
+        width: 132px;
+    }
+    .quantity button, .quantity input {
+        padding: 10px 15px 8px 18px !important;
+    }
+    .quantity input {
+        padding: 10px 0px !important;
+        width: 60px !important;
+    }
+    .single_add_to_cart_button.button, .cart a.button {
+        padding: 1px 5px 1px 5px !important;
+    }
+    .cart a.button {
+        width: 215px;
+    }
+    .single_add_to_cart_button.button {
+        margin-left: -80px;
+    }
+    .cart .tinv-wraper.woocommerce a.tinvwl_add_to_wishlist_button.tinvwl-icon-heart {
+        width: 45px !important;
+        height: 43px !important;
+        padding: 8px 5px 8px 7px !important;
+    }
+    .cart .tinv-wraper.woocommerce a.tinvwl_add_to_wishlist_button.tinvwl-icon-heart::before {
+        top: 17px !important;
+        left: 17px !important;
+    }
+    .woocommerce-tabs ul.tabs {
+        flex-wrap: wrap !important;
+        justify-content: left !important;
+        margin-bottom: 20px !important;
+    }
+    .woocommerce-tabs ul.tabs li a {
+        padding: .6em 0 !important;
+    }
+    .woocommerce-tabs ul.tabs li {
+        width: 100% !important;
+    }
+    .related.products h2 {
+        padding: 5px 10px !important;
+        flex-wrap: wrap;
+    }
+    .related-products .products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .slick-slide {
+        margin-left:10px !important;
+    }
+    .slick-list {
+        margin-left:-10px !important;
+    }
+    .single-product-slide, .single-product-slide a.button.add_to_cart_button {
+        padding: 5px;
     }
 }
 
@@ -3875,7 +3983,7 @@ ul.kalni-minicart-dropdown-menu {
     top: -5px;
     left: 160px;
     transition: all 0.3s ease-in-out;
-    z-index: 6;
+    z-index: 20;
 }
 
 .shoping-cart ul.active-cart {

@@ -200,6 +200,11 @@ function kalni_scripts() {
 	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'kalni-script', get_template_directory_uri() . '/assets/js/kalni-script.js', array('jquery'), _S_VERSION, true );
 
+	if (is_woocommerce()) {
+		wp_enqueue_script( 'added-popup-js', get_template_directory_uri() . '/assets/js/kalni-script.js', array("jquery"));
+		add_thickbox();
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

@@ -197,7 +197,7 @@ endif;
 												<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 												<div class="modal-form" id="modal-form">
 													<div class="page-content modal-content">
-														<a href="#" class="modal-close" title="Close Modal">X</a>
+														<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( 'X', 'kalni' ); ?></a>
 														<img src="/wp-content/uploads/2024/03/logo.png" width="100" alt="">
 														<div class="tabbed">
 															<input type="radio" id="tab21" name="css-tabs2" checked>
@@ -277,7 +277,7 @@ endif;
 										<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 										<div class="modal-form" id="modal-form">
 											<div class="page-content modal-content">
-												<a href="#" class="modal-close" title="Close Modal">X</a>
+												<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( 'X', 'kalni' ); ?></a>
 												<img src="/wp-content/uploads/2024/03/logo.png" width="100" alt="">
 												<div class="tabbed">
 													<input type="radio" id="tab21" name="css-tabs2" checked>

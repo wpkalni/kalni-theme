@@ -118,7 +118,7 @@ if ( ! function_exists( 'kalni_woocommerce_wrapper_before' ) ) {
 	 */
 	function kalni_woocommerce_wrapper_before() {
 		?>
-			<?php if (is_single()) :	?>
+			<?php if ( is_single() && !wp_is_mobile() ) :	?>
 				<div class="single-product-breadcrumb bg-white">
 					<div class="container-85">
 						<div class="woo-breadcrumb-area flex justify-between aling-center">

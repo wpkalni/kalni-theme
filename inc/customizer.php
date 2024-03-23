@@ -150,14 +150,14 @@ function kalni_header_section_customize_register($wp_customize)
 		'header_top_content1',
 		array(
 			'label' => 'Add header top content 1',
-			'type' => 'text',
+			'type' => 'textarea',
 			'section' => 'header_section',
 			'settings' => 'header_top_content1'
 		)
 	);
 	//add setting
 	$wp_customize->add_setting(
-		'header_top_content2',
+		'header_top_sliding',
 		array(
 			'default' => '',
 			'sanitize_callback' => 'sanitize_addsetting_field',
@@ -167,57 +167,15 @@ function kalni_header_section_customize_register($wp_customize)
 
 	//add control
 	$wp_customize->add_control(
-		'header_top_content2',
+		'header_top_sliding',
 		array(
-			'label' => 'Add header top content 2',
-			'type' => 'text',
+			'label' => 'Switch right to left',
+			'type' => 'checkbox',
 			'section' => 'header_section',
-			'settings' => 'header_top_content2'
+			'settings' => 'header_top_sliding'
 		)
 	);
-	//add setting
-	$wp_customize->add_setting(
-		'header_top_content3',
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
-		)
-	);
-
-	//add control
-	$wp_customize->add_control(
-		'header_top_content3',
-		array(
-			'label' => 'Add header top content 3',
-			'type' => 'text',
-			'section' => 'header_section',
-			'settings' => 'header_top_content3'
-		)
-	);
-	//add setting
-	$wp_customize->add_setting(
-		'header_top_content4',
-		array(
-			'default' => '',
-			'sanitize_callback' => 'sanitize_addsetting_field',
-			'transport' => 'refresh'
-		)
-	);
-
-	//add control
-	$wp_customize->add_control(
-		'header_top_content4',
-		array(
-			'label' => 'Add header top content 4',
-			'type' => 'text',
-			'section' => 'header_section',
-			'settings' => 'header_top_content4'
-		)
-	);
-
-
-
+	
 	// Search
 	//add setting
 	$wp_customize->add_setting(
@@ -343,7 +301,7 @@ function kalni_header_section_customize_register($wp_customize)
 	$wp_customize->add_control(
 		'hide_header_product_list',
 		array(
-			'label' => 'Hide product list',
+			'label' => 'Hide compare',
 			'type' => 'checkbox',
 			'section' => 'header_section',
 			'settings' => 'hide_header_product_list'
@@ -364,7 +322,7 @@ function kalni_header_section_customize_register($wp_customize)
 	//add control
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_shuffle_color',
 		array(
-			'label'    => __( 'Shuffle icon color', 'text-domain' ),
+			'label'    => __( 'compare icon color', 'text-domain' ),
 			'section'  => 'header_section',
 			'settings' => 'header_shuffle_color',
 		)

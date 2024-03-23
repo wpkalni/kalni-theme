@@ -22,12 +22,7 @@ get_header();
 					<a href="/" class="button fz-14 fw-700 tt-capitalize lh-42 clr-white bg-blue br-3"><?php esc_html_e( 'Back to home', 'kalni' ); ?></a>
 				</header><!-- .page-header -->
 
-				<div class="page-content">
-					
-
-				<?php echo do_shortcode( '[product_card_slider count="4"]' ); ?>
-
-				</div><!-- .page-content -->
+				<?php echo do_shortcode( '[product_card_slider count="-1"]' ); ?>
 			</section><!-- .error-404 -->
 		</div>
 	</main><!-- #main -->

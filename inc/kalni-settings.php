@@ -20,14 +20,9 @@ function kalni_get_theme_settings(){
     $header_top_content1 = get_theme_mod( 'header_top_content1' );
     $setting['header_top_content1'] = strlen($header_top_content1) > 0 ? $header_top_content1 : false;
     
-    $header_top_content2 = get_theme_mod( 'header_top_content2' );
-    $setting['header_top_content2'] = strlen($header_top_content2) > 0 ? $header_top_content2 : false;
+    $header_top_sliding = get_theme_mod( 'header_top_sliding' );
+    $setting['header_top_sliding'] = strlen($header_top_sliding) > 0 ? $header_top_sliding : false;
     
-    $header_top_content3 = get_theme_mod( 'header_top_content3' );
-    $setting['header_top_content3'] = strlen($header_top_content3) > 0 ? $header_top_content3 : false;
-    
-    $header_top_content4 = get_theme_mod( 'header_top_content4' );
-    $setting['header_top_content4'] = strlen($header_top_content4) > 0 ? $header_top_content4 : false;
     
     // email
     $hide_header_search = get_theme_mod( 'hide_header_search' );

@@ -59,6 +59,11 @@ function kalni_setup() {
 			'menu-2' => esc_html__( 'Category', 'kalni' ),
 		)
 	);
+	register_nav_menus(
+		array(
+			'menu-3' => esc_html__( 'Account', 'kalni' ),
+		)
+	);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments

@@ -25,6 +25,11 @@
 wp_body_open(); 
 $theme_settings = kalni_get_theme_settings();
 
+if(!empty($theme_settings['header_top_sliding']) ) : 
+	$text_slide = esc_attr( $theme_settings['header_top_sliding'] );
+else: 
+	$text_slide = esc_attr( 'left' );
+endif;
 
 if(!empty($theme_settings['header_account_color']) ) : 
 	$account_clr = esc_attr( $theme_settings['header_account_color'] );
@@ -58,35 +63,20 @@ endif;
 		<?php if(! $theme_settings['hide_header_top'] ) : ?>
 		<div class="header-top bg-blue">
 			<div class="container-95">
-				<div class="grid grid-4 align-center g-gap-20 g-justify-center">
+				<marquee width="100%" direction="<?php echo $text_slide; ?>" height="50px">
 					<?php if(!empty($theme_settings['header_top_content1']) ) : ?>
-						<div class="ht-grid-content align-center clr-white flex f-gap-5 fz-14 fw-400 lh-18">
+						<div class="ht-grid-content clr-white flex align-center f-gap-5 fz-14 fw-400 lh-18">
 							<i class="fa-solid fa-bolt"></i>
-							<?php echo esc_html( $theme_settings['header_top_content1'] ); ?>
-						</div>
-					<?php endif; if(!empty($theme_settings['header_top_content2']) ) : ?>
-						<div class="ht-grid-content align-center clr-white flex f-gap-5 fz-14 fw-400 lh-18">
-							<i class="fa-solid fa-bolt"></i>
-							<?php echo esc_html( $theme_settings['header_top_content2'] ); ?>
-						</div>
-					<?php endif; if(!empty($theme_settings['header_top_content3']) ) : ?>
-						<div class="ht-grid-content align-center clr-white flex f-gap-5 fz-14 fw-400 lh-18">
-							<i class="fa-solid fa-bolt"></i>
-							<?php echo esc_html( $theme_settings['header_top_content3'] ); ?>
-						</div>
-					<?php endif; if(!empty($theme_settings['header_top_content4']) ) : ?>
-						<div class="ht-grid-content align-center clr-white flex f-gap-5 fz-14 fw-400 lh-18 justify-end">
-							<i class="fa-solid fa-bolt"></i>
-							<?php echo esc_html( $theme_settings['header_top_content4'] ); ?>
+							<?php echo wp_kses_post( $theme_settings['header_top_content1'] ); ?>
 						</div>
 					<?php endif; ?>
-				</div>
+				</marquee>
 			</div>
 		</div>
 		<?php endif; ?>
 		<div class="header-middle bg-white">
 			<div class="container-85">
-				<div class="middle-desktop grid grid-1-5 g-gap-60 align-center g-justify-end">
+				<div class="middle-desktop flex f-gap-50 align-center justify-between">
 					<div class="site-branding">
 						<?php
 						$custom_logo_id = the_custom_logo( 'custom_logo' );
@@ -104,7 +94,7 @@ endif;
 						?>
 					</div><!-- .site-branding -->
 					<div class="hm-right-content">
-						<div class="grid grid-2-1 align-center g-gap-10 g-justify-end">
+						<div class="flex align-center f-gap-10 justify-between">
 							<?php if(! $theme_settings['hide_header_search'] ) : ?>
 								<?php if ( wp_is_mobile() ) : ?>
 									<div class="search_bar">
@@ -187,10 +177,12 @@ endif;
 											</svg>
 											<?php 
 											if ( is_user_logged_in() ) :
-												$current_user = wp_get_current_user();
-												if ( ($current_user instanceof WP_User) ) :
-													echo esc_html( $current_user->display_name );
-												endif; 
+												wp_nav_menu(
+													array(
+														'theme_location' => 'menu-3',
+														'menu_id'        => 'useraccount',
+													)
+												);
 											else :
 											?>
 											<a href="#modal-form" class="user-link clr-black fz-12 fw-500 lh-16">
@@ -218,7 +210,6 @@ endif;
 																<p><?php echo do_shortcode( '[kalni_wc_reg_form]' ); ?></p>
 															</div>
 														</div>
-														<p><?php esc_html_e( 'or Connect with', 'kalni' ); ?></p>
 													</div>
 												</div>
 											</a>
@@ -269,10 +260,12 @@ endif;
 									</svg>
 									<?php 
 									if ( is_user_logged_in() ) :
-										$current_user = wp_get_current_user();
-										if ( ($current_user instanceof WP_User) ) :
-											echo esc_html( $current_user->display_name );
-										endif; 
+										wp_nav_menu(
+											array(
+												'theme_location' => 'menu-3',
+												'menu_id'        => 'useraccount',
+											)
+										); 
 									else :
 									?>
 									<a href="#modal-form" class="user-link clr-black fz-12 fw-500 lh-16">
@@ -300,7 +293,6 @@ endif;
 														<p><?php echo do_shortcode( '[kalni_wc_reg_form]' ); ?></p>
 													</div>
 												</div>
-												<p><?php esc_html_e( 'or Connect with', 'kalni' ); ?></p>
 											</div>
 										</div>
 									</a>
@@ -341,10 +333,14 @@ endif;
 		<?php if ( !wp_is_mobile() ) : ?>
 			<div class="header-bottom bg-white">
 				<div class="container-85">
-					<div class="grid grid-1-3-1 g-gap-50 align-center">
+					<div class="hb-content flex justify-between f-gap-50 align-center">
 						<?php if(! $theme_settings['hide_header_cats'] ) : ?>
 							<div class="categories-menu relative">
-								<div class="all-categories cursor-pointer flex align-center f-gap-5"><?php esc_html_e( 'Browse All Categories', 'kalni' ); ?> <i class="fa fa-angle-down"></i></div>
+								<div class="all-categories cursor-pointer flex align-center f-gap-5">
+									<i class="fa-solid fa-bars"></i> 
+									<?php esc_html_e( ' Browse All Categories ', 'kalni' ); ?> 
+									<i class="fa fa-angle-down"></i>
+								</div>
 								<div class="cat-menus">
 									<div class="close-cat-menus cursor-pointer"><?php esc_html_e( 'X', 'kalni' ); ?></div>
 									<?php

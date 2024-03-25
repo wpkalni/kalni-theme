@@ -210,7 +210,7 @@ if (class_exists('WooCommerce')) {
                 echo WC()->cart->get_cart_contents_count();
             echo '</span>';
         echo '</a>';
-        echo '<ul class="kalni-minicart-dropdown-menu dropdown-menu-mini-cart list-unstyled"><div class="opened-cart-top flex align-center justify-between bg-white"><h3>Shopping Cart</h3><div class="close-cart">X</div></div>';
+        echo '<ul class="kalni-minicart-dropdown-menu dropdown-menu-mini-cart list-unstyled"><div class="opened-cart-top flex align-center justify-between bg-white"><h3>Shopping Cart</h3><div class="close-cart">&#10005;</div></div>';
             echo '<li>';
                 echo '<div class="widget_shopping_cart_content">';
                     woocommerce_mini_cart();

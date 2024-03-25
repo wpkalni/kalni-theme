@@ -155,7 +155,7 @@ endif;
 									</svg>
 
 									<nav id="site-navigation" class="main-navigation">
-										<div class="responsive-menu-close"><?php esc_html_e( 'X', 'kalni' ); ?></div>
+										<div class="responsive-menu-close"><?php esc_html_e( '&#10005;', 'kalni' ); ?></div>
 										<?php
 										wp_nav_menu(
 											array(
@@ -189,7 +189,7 @@ endif;
 												<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 												<div class="modal-form" id="modal-form">
 													<div class="page-content modal-content">
-														<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( 'X', 'kalni' ); ?></a>
+														<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( '&#10005;', 'kalni' ); ?></a>
 														<img src="/wp-content/uploads/2024/03/logo.png" width="100" alt="">
 														<div class="tabbed">
 															<input type="radio" id="tab21" name="css-tabs2" checked>
@@ -272,7 +272,7 @@ endif;
 										<span class="clr-black-light"><?php esc_html_e( 'Login', 'kalni' ); ?></span><br><?php esc_html_e( 'Account', 'kalni' ); ?>
 										<div class="modal-form" id="modal-form">
 											<div class="page-content modal-content">
-												<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( 'X', 'kalni' ); ?></a>
+												<a href="#" class="modal-close" title="Close Modal"><?php esc_html_e( '&#10005;', 'kalni' ); ?></a>
 												<img src="/wp-content/uploads/2024/03/logo.png" width="100" alt="">
 												<div class="tabbed">
 													<input type="radio" id="tab21" name="css-tabs2" checked>
@@ -342,7 +342,7 @@ endif;
 									<i class="fa fa-angle-down"></i>
 								</div>
 								<div class="cat-menus">
-									<div class="close-cat-menus cursor-pointer"><?php esc_html_e( 'X', 'kalni' ); ?></div>
+									<div class="close-cat-menus cursor-pointer"><?php esc_html_e( '&#10005;', 'kalni' ); ?></div>
 									<?php
 										wp_nav_menu(
 											array(

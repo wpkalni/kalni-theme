@@ -339,3 +339,4 @@ if ( class_exists( 'WooCommerce' ) ) {
 	
     die();
 }
+

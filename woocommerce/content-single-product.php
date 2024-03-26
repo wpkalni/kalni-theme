@@ -15,27 +15,48 @@
  * @version 3.6.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 global $product;
 
-$attribute = $product->get_attribute( 'brand' );
+$attribute = $product->get_attribute('brand');
 
 /**
  * Hook: woocommerce_before_single_product.
  *
  * @hooked woocommerce_output_all_notices - 10
  */
-do_action( 'woocommerce_before_single_product' );
+do_action('woocommerce_before_single_product');
 
-if ( post_password_required() ) {
+if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
 
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<div class="kalni-woo-single-grid grid grid-3-4 g-gap-30 bg-white br-8">
+		<div class="kalni-product-image-wrap">
+			<?php $attachment_ids = $product->get_gallery_image_ids(); if(!empty($attachment_ids)) : ?>
+				
+				<div class="product-gallery-wrap">
+					<div class="product-small-imgs">
+						<?php foreach ( $attachment_ids as $s_img ) : ?>
+							<div class="small-img-gallery">
+								<img width="75" src="<?php echo wp_get_attachment_image_url( $s_img, 'thumbnail' ); ?>" alt="<?php echo get_the_title(); ?>">
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<div class="product-big-imgs">
+						<?php foreach ( $attachment_ids as $b_img ) : ?>
+							<div class="big-img-gallery">
+								<img src="<?php echo wp_get_attachment_image_url( $b_img, 'full' ); ?>" alt="<?php echo get_the_title(); ?>">
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			<?php else : the_post_thumbnail('large'); endif; ?>
+		</div>
 		<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
@@ -44,7 +65,7 @@ if ( post_password_required() ) {
 		 * @hooked woocommerce_show_product_images - 20
 		 */
 		// do_action( 'woocommerce_before_single_product_summary' );
-		woocommerce_show_product_images();
+		// woocommerce_show_product_images();
 		?>
 		<div class="summary entry-summary">
 			<?php
@@ -66,14 +87,14 @@ if ( post_password_required() ) {
 			 */
 			// do_action( 'woocommerce_single_product_summary' );
 			
-			woocommerce_template_single_add_to_cart(); 
+			woocommerce_template_single_add_to_cart();
 			woocommerce_template_single_meta();
 
 			echo kalni_display_product_attributes();
 
 			// echo $product_attributes;
 			// echo wc_display_product_attributes( $product );
-			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400 text-left">' .$attribute. '';
+			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400 text-left">' . $attribute . '';
 
 			woocommerce_template_single_sharing();
 			?>
@@ -87,8 +108,8 @@ if ( post_password_required() ) {
 		 * @hooked woocommerce_upsell_display - 15
 		 * @hooked woocommerce_output_related_products - 20
 		 */
-		do_action( 'woocommerce_after_single_product_summary' );
+		do_action('woocommerce_after_single_product_summary');
 		?>
 </div>
 
-<?php do_action( 'woocommerce_after_single_product' ); ?>
+<?php do_action('woocommerce_after_single_product'); ?>

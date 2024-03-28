@@ -604,6 +604,25 @@ function kalni_footer_section_customize_register($wp_customize)
 			'settings' => 'pinterest_link'
 		)
 	);
+	//add setting
+	$wp_customize->add_setting(
+		'tiktok_link',
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_addsetting_field',
+			'transport' => 'refresh'
+		)
+	);
+	//add control
+	$wp_customize->add_control(
+		'tiktok_link',
+		array(
+			'label' => 'Add pinterest link',
+			'type' => 'text',
+			'section' => 'footer_section',
+			'settings' => 'tiktok_link'
+		)
+	);
 	
 
 	// Footer contact information

@@ -63,6 +63,10 @@ $theme_settings = kalni_get_theme_settings();
 								<a href="<?php echo esc_url($theme_settings['pinterest_link']); ?>">
 									<i class="fa-brands fa-pinterest"></i>
 								</a>
+							<?php endif; if ( $theme_settings['tiktok_link'] ) : ?>
+								<a href="<?php echo esc_url($theme_settings['tiktok_link']); ?>">
+									<i class="fa-brands fa-tiktok"></i>
+								</a>
 							<?php endif; ?>
 						</div>
 					</div>

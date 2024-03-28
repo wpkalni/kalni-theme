@@ -68,7 +68,7 @@
 		});
 
 		// minicart js
-		$(".kalni-minicart-dropdown, .add_to_cart_button, .single_add_to_cart_button").click(function () {
+		$(".kalni-minicart-dropdown, .ajax_add_to_cart").click(function () {
 			$(".kalni-minicart-dropdown-menu").addClass("active-cart");
 			$("body").addClass("active-cart-overlay");
 		});
@@ -122,6 +122,7 @@
 			vertical: true,
 			focusOnSelect: true,
 		});
+		
 	});
 
 }(jQuery));	

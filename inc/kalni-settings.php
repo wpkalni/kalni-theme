@@ -92,6 +92,9 @@ function kalni_get_theme_settings(){
     $pinterest_link = get_theme_mod( 'pinterest_link' );
     $setting['pinterest_link'] = strlen($pinterest_link) > 0 ? $pinterest_link : false;
 
+    $tiktok_link = get_theme_mod( 'tiktok_link' );
+    $setting['tiktok_link'] = strlen($tiktok_link) > 0 ? $tiktok_link : false;
+
 
     // Footer contact information
     $hide_footer_contact = get_theme_mod( 'hide_footer_contact' );

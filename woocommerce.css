@@ -322,7 +322,8 @@ ul.products li.product .button {
 	top: 0;
 	position: absolute;
 	left: 0;
-	color: #3B4DF0;
+	color: #F7AB1B;
+	font-family: star;
 }
 
 p.stars a {
@@ -359,13 +360,13 @@ p.stars a:hover ~ a::before {
 
 p.stars:hover a::before {
 	content: "\53";
-	color: #3B4DF0;
+	color: #F7AB1B;
 	opacity: 1;
 }
 
 p.stars.selected a.active::before {
 	content: "\53";
-	color: #3B4DF0;
+	color: #F7AB1B;
 	opacity: 1;
 }
 
@@ -377,7 +378,7 @@ p.stars.selected a.active ~ a::before {
 
 p.stars.selected a:not(.active)::before {
 	content: "\53";
-	color: #3B4DF0;
+	color: #F7AB1B;
 	opacity: 1;
 }
 
@@ -461,9 +462,14 @@ p.no-comments {
 }
 
 .woocommerce-error {
-	background-color: #e2401c;
+    background-color: #e2401c;
+    margin: 0;
+    list-style: 0;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 15px;
 }
-
 .demo_store {
 	position: fixed;
 	left: 0;

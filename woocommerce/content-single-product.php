@@ -73,6 +73,8 @@ if (post_password_required()) {
 			woocommerce_template_single_rating();
 			woocommerce_template_single_price();
 			woocommerce_template_single_excerpt();
+			woocommerce_template_single_add_to_cart();
+			woocommerce_template_single_meta();
 			/**
 			 * Hook: woocommerce_single_product_summary.
 			 *
@@ -87,13 +89,9 @@ if (post_password_required()) {
 			 */
 			// do_action( 'woocommerce_single_product_summary' );
 			
-			woocommerce_template_single_add_to_cart();
-			woocommerce_template_single_meta();
 
 			echo kalni_display_product_attributes();
 
-			// echo $product_attributes;
-			// echo wc_display_product_attributes( $product );
 			echo '<li class="list-unstyled fz-14 lh-36 clr-black-dark fw-400 text-left">' . $attribute . '';
 
 			woocommerce_template_single_sharing();

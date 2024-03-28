@@ -197,7 +197,7 @@ if (class_exists('WooCommerce')) {
         else: 
             $cart_clr = esc_attr( '#354054' );
         endif;
-        echo '<a href="#!" class="kalni-minicart-dropdown relative" data-toggle="dropdown"> ';
+        echo '<div class="kalni-minicart-dropdown relative" data-toggle="dropdown"> ';
             echo '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
                     <path d="M8.4898 18.9998C8.0998 18.9998 7.7798 18.6998 7.7398 18.3098C7.6998 17.8998 8.00981 17.5298 8.41981 17.4998L19.3198 16.5898C22.3798 16.3298 22.8498 15.8798 23.1898 12.8198L23.9898 5.65978C24.0298 5.24978 24.3998 4.95978 24.8198 4.99978C25.2298 5.04978 25.5298 5.41978 25.4798 5.82978L24.6798 12.9898C24.2598 16.7698 23.2298 17.7698 19.4398 18.0898L8.5598 18.9998C8.5398 18.9998 8.5198 18.9998 8.4898 18.9998Z" fill="'.$cart_clr.'"/>
                     <path d="M26 6.5H6C5.59 6.5 5.25 6.16 5.25 5.75C5.25 5.34 5.58 5 6 5H26C26.41 5 26.75 5.34 26.75 5.75C26.75 6.16 26.41 6.5 26 6.5Z" fill="'.$cart_clr.'"/>
@@ -209,7 +209,7 @@ if (class_exists('WooCommerce')) {
             echo '<span class="count-cart-items cart-count absolute bg-red clr-white br-100 text-center">';
                 echo WC()->cart->get_cart_contents_count();
             echo '</span>';
-        echo '</a>';
+        echo '</div>';
         echo '<ul class="kalni-minicart-dropdown-menu dropdown-menu-mini-cart list-unstyled"><div class="opened-cart-top flex align-center justify-between bg-white"><h3>Shopping Cart</h3><div class="close-cart">&#10005;</div></div>';
             echo '<li>';
                 echo '<div class="widget_shopping_cart_content">';

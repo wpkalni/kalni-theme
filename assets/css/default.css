@@ -1949,7 +1949,7 @@ blockquote {
 }
 
 .wishlist a.tinvwl-icon-heart {
-    padding-right: 40px;
+    padding-right: 36px;
 }
 
 .wishlist a.tinvwl-icon-heart .tinvwl_add_to_wishlist-text {
@@ -2468,6 +2468,28 @@ nav.woocommerce-pagination {
 
 
 /* Single product page  */
+.hover-card-pagin h5 {
+    font-size: 14px;
+    color: #000;
+    align-items: center;
+}
+
+.hover-card-pagin h5 span {
+    color: #3B4DF0;
+}
+
+.hover-card-pagin img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hover-card-pagin {
+    background: green;
+}
+
+
 .kalni-woo-wrapper nav.woocommerce-breadcrumb {
     display: none;
 }
@@ -4441,6 +4463,10 @@ ul.kalni-minicart-dropdown-menu {
     z-index: 20;
     right: -595px;
     height: 100%;
+}
+
+.kalni-minicart-dropdown {
+    cursor: pointer;
 }
 
 .shoping-cart ul.active-cart {

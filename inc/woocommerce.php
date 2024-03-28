@@ -316,39 +316,40 @@ function kalni_add_cart_quantity_plus_minus()
 }
 
 // Add buy now button in product page 
-add_action( 'woocommerce_after_shop_loop_item', 'kalni_buy_now_button', 15 );
-add_action( 'woocommerce_after_add_to_cart_button', 'kalni_buy_now_button' );
-function kalni_buy_now_button() {
+add_action('woocommerce_after_add_to_cart_button', 'kalni_add_buy_now_button');
+function kalni_add_buy_now_button()
+{
 	global $product;
-
-	// if ( 'simple' !== $product->get_type()
-	// || ! $product->is_purchasable()
-	// || ! $product->is_in_stock() ) {
-	// 	return;
-	// }
-
-	$id = $product->get_ID();
-	$classes = implode(
-		' ',
-		array_filter(
-			array(
-				'button',
-				'product_type_' . $product->get_type(),
-				'add_to_cart_button',
-			)
-		)
-	);
-	ob_start();
-	?>
-	<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>?add-to-cart=<?php echo absint( $id ); ?>"
-	class="<?php echo esc_attr( $classes ); ?> bg-blue clr-white fz-14 fw-700 lh-42 tt-capitalize buy-now-btn"
-	rel="nofollow">
-		<?php echo esc_html_e( 'Buy Now', 'kalni' ); ?>
+?>
+	<a href="<?php echo esc_url(wc_get_checkout_url() . '?buy-now-item=' . $product->get_ID()); ?>" class=" bg-blue clr-white fz-14 fw-700 lh-42 tt-capitalize buy-now-btn" id="kalni-buy-now" rel="nofollow">
+		<?php echo esc_html_e('Buy Now', 'kalni'); ?>
 	</a>
 
-	<?php
-	echo ob_get_clean();
+	<?php if ($product->get_type() != 'variable') return; ?>
+	<script>
+		jQuery(document).ready(function($) {
+			$('#kalni-buy-now').on('click', function(event) {
+				event.preventDefault();
+				const submitButton = $(this).siblings('button[type="submit"]');
+				if (submitButton.hasClass('disabled'))
+					submitButton.click();
+				else
+					window.location = `<?php echo home_url(); ?>?buy-now-item=${$(this).siblings('input[name="variation_id"]').val()}`
+			})
+		})
+	</script>
+<?php
 }
+
+add_action('template_redirect', 'kalni_buy_now_item_handle');
+function kalni_buy_now_item_handle()
+{
+	if (!isset($_GET['buy-now-item']) || !wc_get_product($_GET['buy-now-item'])) return;
+	WC()->cart->add_to_cart($_GET['buy-now-item']);
+	wp_redirect(wc_get_checkout_url());
+	die;
+}
+
 
 
 
